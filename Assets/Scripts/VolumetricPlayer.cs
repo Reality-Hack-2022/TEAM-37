@@ -37,6 +37,9 @@ public class VolumetricPlayer : MonoBehaviour
       SyncWithOtherSequencer
    }
 
+   [Header("Song Driver")]
+   public bool DriveSongPlaybackState = false;
+
 
    [Header("Steps")]
    [Tooltip("Set CurStep to -1 if you want to play thru ")]
@@ -182,6 +185,19 @@ public class VolumetricPlayer : MonoBehaviour
             Timeline.Stop();
       }
 
+      //drive song state in sync with our state, if configured
+      if(DriveSongPlaybackState && SongMgr.I)
+      {
+         if (newState == PlaybackState.Paused)
+            SongMgr.I.SetPaused(true);
+         else if (oldState == PlaybackState.Paused && newState == PlaybackState.Playing)
+            SongMgr.I.SetPaused(false);
+         else if (oldState == PlaybackState.Stopped && newState == PlaybackState.Playing)
+            SongMgr.I.Play();
+         else if (newState == PlaybackState.Stopped)
+            SongMgr.I.Stop();
+      }
+
       OnPlaybackStateChanged.Invoke(oldState, newState);
    }
 
@@ -209,6 +225,13 @@ public class VolumetricPlayer : MonoBehaviour
 
    void Update()
    {
+      //keep song speed in sync with animation speed
+      if(DriveSongPlaybackState)
+      {
+         if (!Mathf.Approximately(PlaybackSpeed, SongMgr.I.GetSpeed()))
+            SongMgr.I.SetSpeed(PlaybackSpeed);
+      }
+
       if(_curStepShowing != CurStep)
       {
          OnStepChanged.Invoke(CurStep);
@@ -300,6 +323,7 @@ public class VolumetricPlayer : MonoBehaviour
       _ShowFrame(_lastFrameIdx - 1);
    }
 
+   //force a different material onto the renderer associated with every mesh in the volumetric sequence
    void _DebugApplyMaterial()
    {
       if (!MaterialToApply)

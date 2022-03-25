@@ -32,6 +32,7 @@ public class SongMgr : MonoBehaviour
    private MidiFile _midiFile;
    private TempoMap _tempoMap = null;
    private string _loadedMidiPath = "";
+   private float _speed = 1.0f;
 
    public static SongMgr I { get; private set; }
 
@@ -81,8 +82,14 @@ public class SongMgr : MonoBehaviour
       }
    }
 
+   public float GetSpeed() { return _speed; }
+
    public void SetSpeed(float s)
    {
+      if (Mathf.Approximately(s, _speed))
+         return;
+
+      _speed = s;
       if (AudioSourceToPlay)
          AudioSourceToPlay.pitch = s;
    }

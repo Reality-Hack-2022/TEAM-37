@@ -747,7 +747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a6cba050f0c654a9108b4de2e3dc7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayAtStart: 1
+  PlayAtStart: 0
   AudioSourceToPlay: {fileID: 1658179561}
   MidiFilePath: Midi/stayin_alive.mid
   CurSecs: 0
