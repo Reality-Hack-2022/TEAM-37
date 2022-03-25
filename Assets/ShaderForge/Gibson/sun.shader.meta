@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: e2aee5d0073628d42a9306591d674cdf
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _slimeTex: {fileID: 2800000, guid: 40fdd8bfba8e16d498dd9ef0cd70de00, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
