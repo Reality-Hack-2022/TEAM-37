@@ -763,42 +763,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6311924158587071802, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6311924158960067221, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6311924159407111589, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6311924159486122227, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6311924159538741173, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6311924159871157180, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6311924159958654050, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6311924160206086250, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6311924160494409349, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6582323414474708393, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
       propertyPath: m_Name
       value: athena_dance1
@@ -812,24 +776,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: CurFrame
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: CurProgress
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
       propertyPath: Steps.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
       propertyPath: Steps.Array.data[0].EndProgress
       value: 0.84
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: Steps.Array.data[0].NumLoopBeats
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
       propertyPath: Steps.Array.data[0].StartProgress

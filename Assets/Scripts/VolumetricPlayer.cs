@@ -56,6 +56,7 @@ public class VolumetricPlayer : MonoBehaviour
    [Header("Outputs")]
    public int CurFrame = 0;
    public float CurProgress = 0.0f;
+   public int ComputedStep = -1;
 
    [Header("Debug")]
    [InspectorButton("_DebugPlay")]
@@ -98,6 +99,27 @@ public class VolumetricPlayer : MonoBehaviour
       Stopped,
       Playing, 
       Paused
+   }
+
+   //what step are we on, based on current frame? (only applicable if CurStep property is -1)
+   public int ComputeCurrentStep()
+   {
+      if (CurStep >= 0)
+         return CurStep;
+
+      for(int i = 0; i < Steps.Length; i++)
+      {
+         var step = Steps[i];
+         int startFrameIdx = Mathf.FloorToInt(step.StartProgress * (float)(MeshSequence.Length - 1));
+         int endFrameIdx = Mathf.FloorToInt(step.EndProgress * (float)(MeshSequence.Length - 1));
+
+         if ((_lastFrameIdx >= startFrameIdx) && (_lastFrameIdx <= endFrameIdx))
+            return i;
+      }
+
+      //should never get here
+      Debug.LogWarning("ComputeCurrentStep() couldnt figure out which step you were on... (curFrame = " + _lastFrameIdx + ")");
+      return 0;
    }
 
    void Start()
@@ -226,6 +248,8 @@ public class VolumetricPlayer : MonoBehaviour
             Timeline.time = curTime;
          }
       }
+
+      ComputedStep = ComputeCurrentStep();
    }
 
    void _DebugPlay()
