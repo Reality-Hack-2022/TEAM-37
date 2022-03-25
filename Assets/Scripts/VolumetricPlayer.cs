@@ -94,6 +94,28 @@ public class VolumetricPlayer : MonoBehaviour
 
    public int GetLastFrameIdx() { return _lastFrameIdx; }
 
+   public bool GotoNextStep()
+   {
+      if (CurStep < (Steps.Length - 1))
+      {
+         CurStep++;
+         return true;
+      }
+
+      return false;
+   }
+
+   public bool GotoPreviousStep()
+   {
+      if(CurStep > 0)
+      {
+         CurStep--;
+         return true;
+      }
+
+      return false;
+   }
+
    public enum PlaybackState
    {
       Stopped,
