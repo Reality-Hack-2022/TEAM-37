@@ -25,6 +25,11 @@ public class VolumetricPlayer : MonoBehaviour
    public int FPS = 30;
    public float PlaybackSpeed = 1.0f;
 
+   [Space(10)]
+
+   public bool BeatSync = false;
+   public float NumLoopBeats = 4.0f;
+
    public enum SequenceType
    {
       MeshSequence,
@@ -44,6 +49,8 @@ public class VolumetricPlayer : MonoBehaviour
    {
       public float StartProgress = 0.0f;
       public float EndProgress = 1.0f;
+
+      public float NumLoopBeats = 4.0f;
    }
 
    [Header("Outputs")]
@@ -170,18 +177,32 @@ public class VolumetricPlayer : MonoBehaviour
          {
             int startFrameIdx = 0;
             int endFrameIdx = MeshSequence.Length - 1;
+            Step curStep = null;
             if((CurStep >= 0) && (CurStep < Steps.Length))
             {
-               var stepInfo = Steps[CurStep];
-               startFrameIdx = Mathf.FloorToInt(stepInfo.StartProgress * (float)(MeshSequence.Length - 1));
-               endFrameIdx = Mathf.FloorToInt(stepInfo.EndProgress * (float)(MeshSequence.Length - 1));
+               curStep = Steps[CurStep];
+               startFrameIdx = Mathf.FloorToInt(curStep.StartProgress * (float)(MeshSequence.Length - 1));
+               endFrameIdx = Mathf.FloorToInt(curStep.EndProgress * (float)(MeshSequence.Length - 1));
             }
 
-            _lastFrame += Time.deltaTime * (float)FPS * PlaybackSpeed;
+            int curFrameIdx = _lastFrameIdx;
+            if(BeatSync) //scrub in sync with the beat
+            {
+               float loopBeats = (curStep != null) ? curStep.NumLoopBeats : NumLoopBeats;
 
-            int len = Mathf.Max(0, (endFrameIdx - startFrameIdx));
-            int curFrameIdx = Mathf.FloorToInt(_lastFrame % len);
-            curFrameIdx += startFrameIdx;
+               float loopProgress = (SongMgr.I.CurBeat % loopBeats) / loopBeats;
+
+               _lastFrame = Mathf.Lerp(startFrameIdx, endFrameIdx, loopProgress);
+               curFrameIdx = Mathf.FloorToInt(_lastFrame);
+            }
+            else //play at desired FPS
+            {
+               _lastFrame += Time.deltaTime * (float)FPS * PlaybackSpeed;
+
+               int len = Mathf.Max(0, (endFrameIdx - startFrameIdx));
+               curFrameIdx = Mathf.FloorToInt(_lastFrame % len);
+               curFrameIdx += startFrameIdx;
+            }
 
             //int curFrameIdx = Mathf.FloorToInt(_lastFrame % MeshSequence.Length);
             _ShowFrame(curFrameIdx);

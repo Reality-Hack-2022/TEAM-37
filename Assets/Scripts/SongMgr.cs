@@ -11,6 +11,7 @@ using Melanchall.DryWetMidi.Smf.Interaction;
 public class SongMgr : MonoBehaviour
 {
    [Header("Config")]
+   public bool PlayAtStart = true;
    public AudioSource AudioSourceToPlay;
    public string MidiFilePath = "";
 
@@ -31,6 +32,19 @@ public class SongMgr : MonoBehaviour
    private MidiFile _midiFile;
    private TempoMap _tempoMap = null;
    private string _loadedMidiPath = "";
+
+   public static SongMgr I { get; private set; }
+
+   void Awake()
+   {
+      I = this;
+   }
+
+   void Start()
+   {
+      if (PlayAtStart)
+         Play();
+   }
 
    public void Play()
    {
