@@ -140,19 +140,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5357045208740473642, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.66
       objectReference: {fileID: 0}
     - target: {fileID: 5357045208740473642, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 5357045208740473642, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.89
+      value: 2.23
       objectReference: {fileID: 0}
     - target: {fileID: 5357045208740473642, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7210955
       objectReference: {fileID: 0}
     - target: {fileID: 5357045208740473642, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
       propertyPath: m_LocalRotation.x
@@ -160,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5357045208740473642, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.6928357
       objectReference: {fileID: 0}
     - target: {fileID: 5357045208740473642, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
       propertyPath: m_LocalRotation.z
@@ -172,7 +172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5357045208740473642, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 87.71
       objectReference: {fileID: 0}
     - target: {fileID: 5357045208740473642, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -635,7 +635,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8cb8bc448b6fabd4e957234b9b70bc89, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 623076ddd6f436443b195998ed231e97, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -749,7 +749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayAtStart: 1
   AudioSourceToPlay: {fileID: 1658179561}
-  MidiFilePath: Midi/september.mid
+  MidiFilePath: Midi/stayin_alive.mid
   CurSecs: 0
   CurBeat: 0
   PlaySong: 0
