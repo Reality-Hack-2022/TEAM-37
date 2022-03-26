@@ -293,7 +293,7 @@ MonoBehaviour:
   FPS: 24
   PlaybackSpeed: 1
   BeatSync: 1
-  NumLoopBeats: 21
+  NumLoopBeats: 30
   DriveSongPlaybackState: 1
   CurStep: 0
   Steps:
