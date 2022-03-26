@@ -240,10 +240,13 @@ public class VolumetricPlayer : MonoBehaviour
             SongMgr.I.SetSpeed(PlaybackSpeed);
       }
 
-      if(_curStepShowing != CurStep)
+      if(CurStep != -1)
       {
-         OnStepChanged.Invoke(CurStep);
-         _curStepShowing = CurStep;
+         if (_curStepShowing != CurStep)
+         {
+            OnStepChanged.Invoke(CurStep);
+            _curStepShowing = CurStep;
+         }
       }
 
       if(SeqType == SequenceType.SyncWithOtherSequencer)
@@ -268,7 +271,10 @@ public class VolumetricPlayer : MonoBehaviour
             int curFrameIdx = _lastFrameIdx;
             if(BeatSync) //scrub in sync with the beat
             {
-               float loopBeats = (curStep != null) ? curStep.NumLoopBeats : NumLoopBeats;
+               int stepIdxBeingShow = ComputeCurrentStep();
+               Step stepBeingShow = (stepIdxBeingShow >= 0) && (stepIdxBeingShow < Steps.Length) ? Steps[stepIdxBeingShow] : null;
+
+               float loopBeats = (curStep != null) ? stepBeingShow.NumLoopBeats : NumLoopBeats;
 
                float loopProgress = (SongMgr.I.CurBeat % loopBeats) / loopBeats;
 
