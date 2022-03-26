@@ -1107,10 +1107,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2047786142, guid: 8f3ac735825a9c84ab4a5a98422a664b, type: 3}
-      propertyPath: spin.y
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 2590839866094992747, guid: 8f3ac735825a9c84ab4a5a98422a664b, type: 3}
       propertyPath: m_Name
       value: discoball
@@ -1168,17 +1164,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 9156359230580022500, guid: 70086d46b82d7fb49bcd779e219711bd, type: 3}
-      propertyPath: PlayAtStart
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9156359230580022501, guid: 70086d46b82d7fb49bcd779e219711bd, type: 3}
       propertyPath: m_RootOrder
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 9156359230580022501, guid: 70086d46b82d7fb49bcd779e219711bd, type: 3}
-      propertyPath: m_LocalScale.x
-      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 9156359230580022501, guid: 70086d46b82d7fb49bcd779e219711bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1223,10 +1211,6 @@ PrefabInstance:
     - target: {fileID: 9156359230580022503, guid: 70086d46b82d7fb49bcd779e219711bd, type: 3}
       propertyPath: m_Name
       value: Main_Volumetric_Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 9156359230580022503, guid: 70086d46b82d7fb49bcd779e219711bd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70086d46b82d7fb49bcd779e219711bd, type: 3}
