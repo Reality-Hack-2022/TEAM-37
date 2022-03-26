@@ -597,8 +597,8 @@ MonoBehaviour:
   tutorialPanel: {fileID: 1842193016}
   playPausePanel: {fileID: 1974347417}
   playPause:
-    pause: {fileID: 0}
-    play: {fileID: 0}
+    pause: {fileID: 21300000, guid: 0bba8f2a2dc6dfa40928c96f0e48e094, type: 3}
+    play: {fileID: 21300000, guid: 3a53c54a41462f041bd53dd5a2e4dcf4, type: 3}
   contentPoster: {fileID: 6169346}
   contentPanels:
   - {fileID: 21300000, guid: 90f2beb2f148c9d439104512352eeb18, type: 3}

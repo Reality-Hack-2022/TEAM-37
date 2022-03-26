@@ -81,6 +81,31 @@ public class ProgressionMgr : MonoBehaviour
 
     }
 
+    public void TogglePaused()
+    {
+        Debug.Log("Toggle paused in progression Man");
+        if (volumetricPlayer.GetPlaybackState() == VolumetricPlayer.PlaybackState.Playing)
+        {
+            SetPaused();
+        }
+        if (volumetricPlayer.GetPlaybackState() == VolumetricPlayer.PlaybackState.Paused)
+        {
+            SetPlaying();
+        }
+    }
+
+    public void SetPaused()
+    {
+        volumetricPlayer.SetPlaybackState(VolumetricPlayer.PlaybackState.Paused);
+        playPausePanel.sprite = playPause.pause;
+    }
+
+    public void SetPlaying()
+    {
+        volumetricPlayer.SetPlaybackState(VolumetricPlayer.PlaybackState.Playing);
+        playPausePanel.sprite = playPause.play;
+    }
+
 
 
 
