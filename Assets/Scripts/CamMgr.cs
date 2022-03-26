@@ -85,5 +85,8 @@ public class CamMgr : MonoBehaviour
                _EnableXR();
          }
       }
+
+      if (Input.GetKeyDown(KeyCode.C))
+         _OculusRecenter();
    }
 }
