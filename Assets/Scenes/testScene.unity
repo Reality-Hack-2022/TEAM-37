@@ -304,6 +304,122 @@ PrefabInstance:
       propertyPath: m_Name
       value: volumetricPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: ComputedStep
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[1].EndProgress
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[2].EndProgress
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[3].EndProgress
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[4].EndProgress
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[5].EndProgress
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[6].EndProgress
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[7].EndProgress
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[8].EndProgress
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[9].EndProgress
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[1].NumLoopBeats
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[2].NumLoopBeats
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[3].NumLoopBeats
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[4].NumLoopBeats
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[5].NumLoopBeats
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[6].NumLoopBeats
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[7].NumLoopBeats
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[8].NumLoopBeats
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[9].NumLoopBeats
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[1].StartProgress
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[2].StartProgress
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[3].StartProgress
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[4].StartProgress
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[5].StartProgress
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[6].StartProgress
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[7].StartProgress
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[8].StartProgress
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
+      propertyPath: Steps.Array.data[9].StartProgress
+      value: 0.32
+      objectReference: {fileID: 0}
     - target: {fileID: 6582323414474708395, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -625,7 +741,10 @@ MonoBehaviour:
     play: {fileID: 0}
   contentPoster: {fileID: 6169346}
   contentPanels:
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 90f2beb2f148c9d439104512352eeb18, type: 3}
+  - {fileID: 21300000, guid: 8edb581b224e71440bd8d6f86ae8c462, type: 3}
+  - {fileID: 21300000, guid: 24e4a6c1cc8c1334aa96518c979d6892, type: 3}
+  - {fileID: 21300000, guid: 10eac2ffc2fc7894997d2b459de0e562, type: 3}
 --- !u!4 &1533867017
 Transform:
   m_ObjectHideFlags: 0

@@ -72,11 +72,13 @@ public class InputMgr : MonoBehaviour
     public void NextTutorialElement()
     {
         if (!ProgressionMgr.instance.volumetricPlayer) return;
+        Debug.Log("Go to next step.");
         ProgressionMgr.instance.volumetricPlayer.GotoNextStep();
     }
     public void PreviousTutorialElement()
     {
         if (!ProgressionMgr.instance.volumetricPlayer) return;
+        Debug.Log("Go to previous step.");
         ProgressionMgr.instance.volumetricPlayer.GotoPreviousStep();
     }
 
