@@ -75,6 +75,8 @@ public class ProgressionMgr : MonoBehaviour
 
         volumetricPlayer.CurStep = startStep;
         SetUIElement();
+
+        SetPlaying();
         //Tutorials[whichTutorial].PlayTutorial();
     }
 
