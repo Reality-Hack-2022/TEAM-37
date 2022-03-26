@@ -307,7 +307,14 @@ public class VolumetricPlayer : MonoBehaviour
          }
       }
 
+      var prevComputedStep = ComputedStep;
       ComputedStep = ComputeCurrentStep();
+      
+      if(CurStep == -1)
+      {
+         if (prevComputedStep != ComputedStep)
+            OnStepChanged.Invoke(ComputedStep);
+      }
    }
 
    void _DebugPlay()
