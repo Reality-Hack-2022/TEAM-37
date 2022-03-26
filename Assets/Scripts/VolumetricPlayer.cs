@@ -266,7 +266,7 @@ public class VolumetricPlayer : MonoBehaviour
    void Update()
    {
       //keep song speed in sync with animation speed
-      if(DriveSongPlaybackState)
+      if(DriveSongPlaybackState && (SeqType != SequenceType.SyncWithOtherSequencer))
       {
          if (!Mathf.Approximately(PlaybackSpeed, SongMgr.I.GetSpeed()))
             SongMgr.I.SetSpeed(PlaybackSpeed);
