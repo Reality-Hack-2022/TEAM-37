@@ -54,6 +54,7 @@ public class VolumetricPlayer : MonoBehaviour
       public float EndProgress = 1.0f;
 
       public float NumLoopBeats = 4.0f;
+      public int RepeatCount = 1;
    }
 
    [Header("Outputs")]
@@ -89,6 +90,7 @@ public class VolumetricPlayer : MonoBehaviour
    public VolumetricPlayerStepEvent OnStepChanged = new VolumetricPlayerStepEvent();
 
 
+   GameObject[] _fullSequence = null; //full sequence, including repeats
    PlaybackState _playbackState = PlaybackState.Stopped;
    float _lastFrame = 0.0f;
    int _lastFrameIdx = 0;
@@ -96,6 +98,8 @@ public class VolumetricPlayer : MonoBehaviour
    float _startTime = 0.0f;
 
    int _curStepShowing = -1;
+
+   int _numRepeatsShown = 0;
 
    public int GetLastFrameIdx() { return _lastFrameIdx; }
 
@@ -151,6 +155,33 @@ public class VolumetricPlayer : MonoBehaviour
 
    void Start()
    {
+      //Build full sequence incorporating repeat counts, into one long sequence
+      _fullSequence = MeshSequence;
+      //SHIT: this is busted
+      /*if (Steps.Length > 0)
+      {
+         List<GameObject> fullSequence = new List<GameObject>();
+         for (int i = 0; i < Steps.Length; i++)
+         {
+            var curStep = Steps[i];
+
+            int startFrameIdx = Mathf.FloorToInt(curStep.StartProgress * (float)(MeshSequence.Length - 1));
+            int endFrameIdx = Mathf.FloorToInt(curStep.EndProgress * (float)(MeshSequence.Length - 1));
+            
+            for(int j = 0; j < curStep.RepeatCount; j++)
+            {
+               for(int frameIdx = startFrameIdx; frameIdx <= endFrameIdx; frameIdx++)
+               {
+                  GameObject frame = MeshSequence[frameIdx];
+                  fullSequence.Add(frame);
+               }
+            }
+         }
+
+         _fullSequence = fullSequence.ToArray();
+      }*/
+
+
       if (PlayAtStart)
          SetPlaybackState(PlaybackState.Playing);
       if(SeqType == SequenceType.Timeline)
@@ -211,11 +242,12 @@ public class VolumetricPlayer : MonoBehaviour
 
    void _ShowFrame(int frameIdx)
    {
-      if (frameIdx < 0 || frameIdx >= MeshSequence.Length)
+      GameObject[] seq = (CurStep == -1) ? _fullSequence : MeshSequence;
+      if (frameIdx < 0 || frameIdx >= seq.Length)
          return;
 
       CurFrame = frameIdx;
-      CurProgress = Mathf.InverseLerp(0, MeshSequence.Length - 1, frameIdx);
+      CurProgress = Mathf.InverseLerp(0, seq.Length - 1, frameIdx);
 
       if(GetPlaybackState() == PlaybackState.Paused)
       {
@@ -223,7 +255,7 @@ public class VolumetricPlayer : MonoBehaviour
          _lastFrame = (float)frameIdx;
       }
 
-      for (int i = 0; i < MeshSequence.Length;i++)
+      for (int i = 0; i < seq.Length;i++)
       {
          bool active = i == frameIdx;
          if (MeshSequence[i].activeSelf != active)
@@ -258,8 +290,10 @@ public class VolumetricPlayer : MonoBehaviour
       {
          if(SeqType == SequenceType.MeshSequence)
          {
+            GameObject[] seq = (CurStep == -1) ? _fullSequence : MeshSequence;
+
             int startFrameIdx = 0;
-            int endFrameIdx = MeshSequence.Length - 1;
+            int endFrameIdx = seq.Length - 1;
             Step curStep = null;
             if((CurStep >= 0) && (CurStep < Steps.Length))
             {

@@ -293,25 +293,30 @@ MonoBehaviour:
   FPS: 24
   PlaybackSpeed: 1
   BeatSync: 1
-  NumLoopBeats: 21
+  NumLoopBeats: 30
   DriveSongPlaybackState: 1
-  CurStep: -1
+  CurStep: 0
   Steps:
   - StartProgress: 0
-    EndProgress: 0.05416667
-    NumLoopBeats: 1
-  - StartProgress: 0.05833333
+    EndProgress: 0.055
+    NumLoopBeats: 2
+    RepeatCount: 4
+  - StartProgress: 0.055
     EndProgress: 0.3166667
-    NumLoopBeats: 6
+    NumLoopBeats: 8
+    RepeatCount: 1
   - StartProgress: 0.3166667
     EndProgress: 0.4625
     NumLoopBeats: 4
+    RepeatCount: 1
   - StartProgress: 0.4625
     EndProgress: 0.8583333
-    NumLoopBeats: 8
+    NumLoopBeats: 12
+    RepeatCount: 1
   - StartProgress: 0.8583333
     EndProgress: 0.975
-    NumLoopBeats: 2
+    NumLoopBeats: 4
+    RepeatCount: 1
   CurFrame: 40
   CurProgress: 0.16666667
   ComputedStep: 1
