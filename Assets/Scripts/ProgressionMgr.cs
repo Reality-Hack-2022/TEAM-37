@@ -72,8 +72,6 @@ public class ProgressionMgr : MonoBehaviour
     {
         if (contentPanels[i])
             contentPoster.sprite = contentPanels[i];
-
-
         Debug.Log("Try Content Panel Change");
     }
 
