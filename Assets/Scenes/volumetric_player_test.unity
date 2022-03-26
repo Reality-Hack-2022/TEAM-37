@@ -767,41 +767,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: athena_dance1
       objectReference: {fileID: 0}
-    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: CurStep
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: BeatSync
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: Steps.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: Steps.Array.data[0].EndProgress
-      value: 0.84
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582323414474708394, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
-      propertyPath: Steps.Array.data[0].StartProgress
-      value: 0.32
-      objectReference: {fileID: 0}
     - target: {fileID: 6582323414474708395, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6582323414474708395, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6063954
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6582323414474708395, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2084613
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6582323414474708395, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.4532566
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6582323414474708395, guid: f2c74467d0f8adf4e92703da072c1172, type: 3}
       propertyPath: m_LocalRotation.w

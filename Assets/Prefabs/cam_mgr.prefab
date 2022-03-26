@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06da54162b95d2429ae6ebea2681726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RecenterAtStart: 0
   CamType: 0
   OculusRig: {fileID: 7852005308531189245}
   HololensRig: {fileID: 0}
