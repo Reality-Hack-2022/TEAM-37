@@ -42,6 +42,11 @@ public class InputMgr : MonoBehaviour
         {
             ExitTutorial();
         }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            ToggleSlow();
+        }
+
     }
 
     public void ToggleVolumeSlider()
@@ -57,12 +62,9 @@ public class InputMgr : MonoBehaviour
         //ProgressionMgr.instance.volumetricPlayer.SetVolume(volumeSlider.GetComponent<Slider>().value);
     }
 
-    public void SetPlaySpeed()
+    public void ToggleSlow()
     {
-        Debug.Log("Setting playbackspeed 0.5");
-
-        if (!ProgressionMgr.instance.volumetricPlayer) return;
-        ProgressionMgr.instance.volumetricPlayer.PlaybackSpeed = 1;
+        ProgressionMgr.instance.ToggleSlow(); 
     }
 
     public void NextTutorialElement()

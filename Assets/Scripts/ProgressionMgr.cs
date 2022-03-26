@@ -128,6 +128,37 @@ public class ProgressionMgr : MonoBehaviour
         playPausePanel.sprite = playPause.play;
     }
 
+    float playbackSpeed => volumetricPlayer.PlaybackSpeed;
+    public void ToggleSlow()
+    {
+        if (playbackSpeed == 1)
+        {
+            StartCoroutine(SetSpeed(0.5f, 1));
+        }
+        else
+        {
+            StartCoroutine(SetSpeed(1f, 1));
+        }
+    }
+
+    IEnumerator SetSpeed(float targetSpeed, float duration)
+    {
+        float startSpeed = volumetricPlayer.PlaybackSpeed;
+        float startTime = Time.time;
+        float endTime = startTime + duration;
+
+        float curTime = startTime;
+        while (curTime <= endTime)
+        {
+            curTime = Time.time;
+            float u = Mathf.InverseLerp(startTime, endTime, curTime);
+
+            float speed = Mathf.Lerp(startSpeed, targetSpeed, u);
+            volumetricPlayer.PlaybackSpeed = speed;
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
 
 
