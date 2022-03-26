@@ -58,12 +58,15 @@ public class ProgressionMgr : MonoBehaviour
 
     public void StepChanged(int i = 0)
     {
-
+        Debug.Log("Step Change");
     }
     public void SetUIElement(int i = 0)
     {
         if (contentPanels[i])
             contentPoster.sprite = contentPanels[i];
+
+
+        Debug.Log("Try Content Panel Change");
     }
 
 
