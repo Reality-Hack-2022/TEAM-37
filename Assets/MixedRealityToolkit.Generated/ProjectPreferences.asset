@@ -20,7 +20,12 @@ MonoBehaviour:
   intPreferences:
     keys:
     - _MixedRealityToolkit_Editor_ConfiguratorState
+<<<<<<< Updated upstream
     values: 00000000
+=======
+    - MixedRealityToolkit_Editor_AudioSpatializerCount
+    values: f401000001000000
+>>>>>>> Stashed changes
   floatPreferences:
     keys: []
     values: []
