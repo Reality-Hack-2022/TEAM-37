@@ -64,6 +64,25 @@ public class ProgressionMgr : MonoBehaviour
         //Tutorials[whichTutorial].PlayTutorial();
     }
 
+    public void ExitTutorial()
+    {
+
+
+        volumetricPlayer.CurStep = 0;
+        volumetricPlayer.gameObject.SetActive(false);
+        volumetricPlayer.SetPlaybackState(VolumetricPlayer.PlaybackState.Stopped);
+
+        extraVolumetricPlayers.SetActive(false);
+        mainMenuPanel.SetActive(true);
+        tutorialPanel.SetActive(false);
+
+        volumetricPlayer.OnStepChanged.AddListener(SetUIElement);
+        volumetricPlayer.OnStepChanged.AddListener(StepChanged);
+
+        SetUIElement();
+        //Tutorials[whichTutorial].PlayTutorial();
+    }
+
     public void StepChanged(int i = 0)
     {
         Debug.Log("Step Change");
@@ -84,12 +103,15 @@ public class ProgressionMgr : MonoBehaviour
     public void TogglePaused()
     {
         Debug.Log("Toggle paused in progression Man");
+        Debug.Log(volumetricPlayer.GetPlaybackState());
         if (volumetricPlayer.GetPlaybackState() == VolumetricPlayer.PlaybackState.Playing)
         {
+            Debug.Log(volumetricPlayer.GetPlaybackState());
             SetPaused();
         }
-        if (volumetricPlayer.GetPlaybackState() == VolumetricPlayer.PlaybackState.Paused)
+        else if (volumetricPlayer.GetPlaybackState() == VolumetricPlayer.PlaybackState.Paused)
         {
+            Debug.Log(volumetricPlayer.GetPlaybackState());
             SetPlaying();
         }
     }
