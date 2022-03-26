@@ -99,7 +99,8 @@ public class InputMgr : MonoBehaviour
     }
     public void ExitTutorial()
     {
-        if (!ProgressionMgr.instance.volumetricPlayer) return;
+        ProgressionMgr.instance.ExitTutorial();
+
         Debug.Log("Exit");
     }
 
