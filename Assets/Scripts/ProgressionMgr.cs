@@ -133,13 +133,14 @@ public class ProgressionMgr : MonoBehaviour
     {
         if (playbackSpeed == 1)
         {
-            StartCoroutine(SetSpeed(0.5f, 1));
+            StartCoroutine(SetSpeed(0.1f, 1));
         }
         else
         {
             StartCoroutine(SetSpeed(1f, 1));
         }
     }
+
 
     IEnumerator SetSpeed(float targetSpeed, float duration)
     {
