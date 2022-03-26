@@ -144,11 +144,6 @@ public class VolumetricPlayer : MonoBehaviour
             return i;
       }
 
-      if(ApplyMaterialAtStart)
-      {
-         _DebugApplyMaterial();
-      }
-
       //should never get here
       Debug.LogWarning("ComputeCurrentStep() couldnt figure out which step you were on... (curFrame = " + _lastFrameIdx + ")");
       return 0;
@@ -162,6 +157,12 @@ public class VolumetricPlayer : MonoBehaviour
       {
          //we need to scrub the timeline manually because we want to control loop points and speed ourselves
          Timeline.timeUpdateMode = DirectorUpdateMode.Manual;
+      }
+
+
+      if (ApplyMaterialAtStart)
+      {
+         _DebugApplyMaterial();
       }
    }
 

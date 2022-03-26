@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: clip_object
-  m_Shader: {fileID: 4800000, guid: f2f8eaef01db21545bdc8dc632bfb9f6, type: 3}
+  m_Name: clip_object_x_only_step0
+  m_Shader: {fileID: 4800000, guid: 97f9a7838bb0688458216fd5ad2778ca, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -60,7 +60,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Gloss: 0.242
+    - _Gloss: 0.163
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -73,9 +73,9 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _xMax: 4
+    - _xMax: 0.1
     - _xMin: -4
-    - _yMax: 4
+    - _yMax: 1.07
     - _yMin: 0.02
     - _zMax: 4
     - _zMin: -4
