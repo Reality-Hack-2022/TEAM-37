@@ -25,6 +25,9 @@ public class ProgressionMgr : MonoBehaviour
     public SpriteRenderer contentPoster;
     public List<Sprite> contentPanels = new List<Sprite>();
 
+    [Header("Visuals")]
+    public Spinner discoBall;
+
     private void Awake()
     {
         if (instance)
@@ -156,6 +159,7 @@ public class ProgressionMgr : MonoBehaviour
 
             float speed = Mathf.Lerp(startSpeed, targetSpeed, u);
             volumetricPlayer.PlaybackSpeed = speed;
+            if(discoBall)discoBall.speed = speed;
 
             yield return new WaitForEndOfFrame();
         }
