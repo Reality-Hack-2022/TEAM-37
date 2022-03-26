@@ -46,7 +46,7 @@ public class ProgressionMgr : MonoBehaviour
 
     public void StartTutorial(int startStep = 0)
     {
-        Debug.Log("Starting Tutorial in Progression MGR");
+        Debug.Log($"Starting Tutorial in Progression MGR from step {startStep}");
 
         volumetricPlayer.CurStep = startStep;
         volumetricPlayer.gameObject.SetActive(true);
@@ -58,7 +58,27 @@ public class ProgressionMgr : MonoBehaviour
 
         volumetricPlayer.OnStepChanged.AddListener(SetUIElement);
         volumetricPlayer.OnStepChanged.AddListener(StepChanged);
+
+        volumetricPlayer.CurStep = startStep;
+        SetUIElement();
+        //Tutorials[whichTutorial].PlayTutorial();
+    }
+
+    public void ExitTutorial()
+    {
+
+
         volumetricPlayer.CurStep = 0;
+        volumetricPlayer.gameObject.SetActive(false);
+        volumetricPlayer.SetPlaybackState(VolumetricPlayer.PlaybackState.Stopped);
+
+        extraVolumetricPlayers.SetActive(false);
+        mainMenuPanel.SetActive(true);
+        tutorialPanel.SetActive(false);
+
+        volumetricPlayer.OnStepChanged.AddListener(SetUIElement);
+        volumetricPlayer.OnStepChanged.AddListener(StepChanged);
+
         SetUIElement();
         //Tutorials[whichTutorial].PlayTutorial();
     }
@@ -72,12 +92,40 @@ public class ProgressionMgr : MonoBehaviour
     {
         if (contentPanels[i])
             contentPoster.sprite = contentPanels[i];
-        Debug.Log("Try Content Panel Change");
+        Debug.Log($"Try Content Panel Change {i}");
     }
 
     public void StartContinuous()
     {
 
+    }
+
+    public void TogglePaused()
+    {
+        Debug.Log("Toggle paused in progression Man");
+        Debug.Log(volumetricPlayer.GetPlaybackState());
+        if (volumetricPlayer.GetPlaybackState() == VolumetricPlayer.PlaybackState.Playing)
+        {
+            Debug.Log(volumetricPlayer.GetPlaybackState());
+            SetPaused();
+        }
+        else if (volumetricPlayer.GetPlaybackState() == VolumetricPlayer.PlaybackState.Paused)
+        {
+            Debug.Log(volumetricPlayer.GetPlaybackState());
+            SetPlaying();
+        }
+    }
+
+    public void SetPaused()
+    {
+        volumetricPlayer.SetPlaybackState(VolumetricPlayer.PlaybackState.Paused);
+        playPausePanel.sprite = playPause.pause;
+    }
+
+    public void SetPlaying()
+    {
+        volumetricPlayer.SetPlaybackState(VolumetricPlayer.PlaybackState.Playing);
+        playPausePanel.sprite = playPause.play;
     }
 
 

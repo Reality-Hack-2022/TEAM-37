@@ -34,7 +34,7 @@ public class InputMgr : MonoBehaviour
         {
             PreviousTutorialElement();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePaused();
         }
@@ -81,15 +81,8 @@ public class InputMgr : MonoBehaviour
     public void TogglePaused()
     {
         Debug.Log("Pause");
-        if (!ProgressionMgr.instance.volumetricPlayer) return;
-        if (ProgressionMgr.instance.volumetricPlayer.GetPlaybackState() == VolumetricPlayer.PlaybackState.Playing)
-        {
-            ProgressionMgr.instance.volumetricPlayer.SetPlaybackState(VolumetricPlayer.PlaybackState.Paused);
-        }
-        if (ProgressionMgr.instance.volumetricPlayer.GetPlaybackState() == VolumetricPlayer.PlaybackState.Paused)
-        {
-            ProgressionMgr.instance.volumetricPlayer.SetPlaybackState(VolumetricPlayer.PlaybackState.Playing);
-        }
+        //if (!ProgressionMgr.instance.volumetricPlayer) return;
+        ProgressionMgr.instance.TogglePaused();
     }
 
     public void Restart()
@@ -102,11 +95,12 @@ public class InputMgr : MonoBehaviour
     public void StartTutorial(int startStep = 0)
     {
         ProgressionMgr.instance.StartTutorial(startStep);
-        Debug.Log("Start");
+        //Debug.Log($"Start with {startStep}");
     }
     public void ExitTutorial()
     {
-        if (!ProgressionMgr.instance.volumetricPlayer) return;
+        ProgressionMgr.instance.ExitTutorial();
+
         Debug.Log("Exit");
     }
 
