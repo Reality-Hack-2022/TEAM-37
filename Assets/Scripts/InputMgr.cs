@@ -19,7 +19,7 @@ public class InputMgr : MonoBehaviour
             ProgressionMgr.instance.volumetricPlayer.CurStep = -1;
             ProgressionMgr.instance.volumetricPlayer.gameObject.SetActive(true);
             StartTutorial();
-        }   
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ProgressionMgr.instance.volumetricPlayer.CurStep = 0;
@@ -30,15 +30,15 @@ public class InputMgr : MonoBehaviour
 
 
         //WHEN THE VOLUMETRIC PLAYER IS RUNNING
-        if(Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             NextTutorialElement();
         }
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             PreviousTutorialElement();
         }
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             TogglePaused();
         }
@@ -66,20 +66,18 @@ public class InputMgr : MonoBehaviour
         Debug.Log("Setting playbackspeed 0.5");
 
         if (!ProgressionMgr.instance.volumetricPlayer) return;
-        ProgressionMgr.instance.volumetricPlayer.PlaybackSpeed = 0.5f; 
+        ProgressionMgr.instance.volumetricPlayer.PlaybackSpeed = 1;
     }
 
     public void NextTutorialElement()
     {
         if (!ProgressionMgr.instance.volumetricPlayer) return;
-        ProgressionMgr.instance.volumetricPlayer.CurStep++;
-        ProgressionMgr.instance.SetUIElement();
+        ProgressionMgr.instance.volumetricPlayer.GotoNextStep();
     }
     public void PreviousTutorialElement()
-    { 
+    {
         if (!ProgressionMgr.instance.volumetricPlayer) return;
-        ProgressionMgr.instance.volumetricPlayer.CurStep--;
-        ProgressionMgr.instance.SetUIElement();
+        ProgressionMgr.instance.volumetricPlayer.GotoPreviousStep();
     }
 
     public void TogglePaused()
@@ -101,19 +99,16 @@ public class InputMgr : MonoBehaviour
         if (!ProgressionMgr.instance.volumetricPlayer) return;
         //ProgressionMgr.instance.volumetricPlayer.SetStep(0);
         Debug.Log("Restart");
-
     }
 
     public void StartTutorial()
     {
         ProgressionMgr.instance.StartTutorial();
         Debug.Log("Start");
-
     }
     public void ExitTutorial()
     {
         if (!ProgressionMgr.instance.volumetricPlayer) return;
-
         Debug.Log("Exit");
     }
 

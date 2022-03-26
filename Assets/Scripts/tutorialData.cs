@@ -16,11 +16,11 @@ public class TutorialData : ScriptableObject
     }
     void SpawnVolumetricPlayer()
     {
-        GameObject volumetricPlayer = Instantiate(volumetricPlayerPrefab,
-                                                    ProgressionMgr.instance.spawnPoint.position+spawnOffset,
-                                                    ProgressionMgr.instance.spawnPoint.rotation);
+        //GameObject volumetricPlayer = Instantiate(volumetricPlayerPrefab,
+        //                                            ProgressionMgr.instance.spawnPoint.position+spawnOffset,
+        //                                            ProgressionMgr.instance.spawnPoint.rotation);
 
-        ProgressionMgr.instance.volumetricPlayer = volumetricPlayer.GetComponent<VolumetricPlayer>();
+        //ProgressionMgr.instance.volumetricPlayer = volumetricPlayer.GetComponent<VolumetricPlayer>();
     }
-    
+
 }
