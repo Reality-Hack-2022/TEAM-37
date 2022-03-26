@@ -44,9 +44,11 @@ public class ProgressionMgr : MonoBehaviour
         tutorialPanel.SetActive(false);
     }
 
-    public void StartTutorial(int whichTutorial = 0)
+    public void StartTutorial(int startStep = 0)
     {
         Debug.Log("Starting Tutorial in Progression MGR");
+        ProgressionMgr.instance.volumetricPlayer.CurStep = startStep;
+        volumetricPlayer.gameObject.SetActive(true);
         mainMenuPanel.SetActive(false);
         tutorialPanel.SetActive(true);
         volumetricPlayer.OnStepChanged.AddListener(SetUIElement);
@@ -59,6 +61,7 @@ public class ProgressionMgr : MonoBehaviour
     public void StepChanged(int i = 0)
     {
         Debug.Log("Step Change");
+
     }
     public void SetUIElement(int i = 0)
     {
@@ -68,6 +71,12 @@ public class ProgressionMgr : MonoBehaviour
 
         Debug.Log("Try Content Panel Change");
     }
+
+    public void StartContinuous()
+    { 
+        
+    }
+
 
 
 

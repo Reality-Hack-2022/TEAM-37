@@ -16,15 +16,11 @@ public class InputMgr : MonoBehaviour
         //IN THE MAIN MENU
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            ProgressionMgr.instance.volumetricPlayer.CurStep = -1;
-            ProgressionMgr.instance.volumetricPlayer.gameObject.SetActive(true);
-            StartTutorial();
+            StartTutorial(-1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ProgressionMgr.instance.volumetricPlayer.CurStep = 0;
-            ProgressionMgr.instance.volumetricPlayer.gameObject.SetActive(true);
-            StartTutorial();
+            StartTutorial(0);
         }
 
 
@@ -103,9 +99,9 @@ public class InputMgr : MonoBehaviour
         Debug.Log("Restart");
     }
 
-    public void StartTutorial()
+    public void StartTutorial(int startStep = 0)
     {
-        ProgressionMgr.instance.StartTutorial();
+        ProgressionMgr.instance.StartTutorial(startStep);
         Debug.Log("Start");
     }
     public void ExitTutorial()
@@ -114,13 +110,6 @@ public class InputMgr : MonoBehaviour
         Debug.Log("Exit");
     }
 
-
-
-    public void TogglePlaythrough()
-    {
-        if (!ProgressionMgr.instance.volumetricPlayer) return;
-        Debug.Log("Toggle Playthrough");
-    }
 
 
 
