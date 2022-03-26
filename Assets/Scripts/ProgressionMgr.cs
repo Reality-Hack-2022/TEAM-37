@@ -12,6 +12,10 @@ public class ProgressionMgr : MonoBehaviour
 {
     public static ProgressionMgr instance;
 
+    bool inContinuous => volumetricPlayer.CurStep == -1;
+    bool runningTutorial => !mainMenuPanel.activeSelf;
+
+
     [Header("Tutorial Objects")]
     public VolumetricPlayer volumetricPlayer;
     public GameObject extraVolumetricPlayers;
@@ -45,6 +49,13 @@ public class ProgressionMgr : MonoBehaviour
     {
         mainMenuPanel.SetActive(true);
         tutorialPanel.SetActive(false);
+    }
+
+    
+   
+    private void Update()
+    {
+        discoBall.gameObject.SetActive(runningTutorial && inContinuous);
     }
 
     public void StartTutorial(int startStep = 0)
@@ -98,10 +109,7 @@ public class ProgressionMgr : MonoBehaviour
         Debug.Log($"Try Content Panel Change {i}");
     }
 
-    public void StartContinuous()
-    {
 
-    }
 
     public void TogglePaused()
     {
