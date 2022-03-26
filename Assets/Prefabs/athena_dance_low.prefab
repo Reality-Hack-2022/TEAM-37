@@ -320,7 +320,9 @@ MonoBehaviour:
   Stop: 0
   StepForward: 0
   StepBackward: 0
-  MaterialToApply: {fileID: 0}
+  ApplyMaterialAtStart: 1
+  MaterialToApply: {fileID: 2100000, guid: 923c834c50df35f41931a95fb3697728, type: 2}
+  TextureProperty: _MainTex
   ApplyMaterial: 0
   OnPlaybackStateChanged:
     m_PersistentCalls:
@@ -10105,6 +10107,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 2c956cd1c9ba7b342a86712a79ee3457, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 923c834c50df35f41931a95fb3697728, type: 2}
     - target: {fileID: 919132149155446097, guid: 2c956cd1c9ba7b342a86712a79ee3457, type: 3}
       propertyPath: m_Name
       value: capture_70421783.0000000

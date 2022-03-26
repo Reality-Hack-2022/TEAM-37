@@ -78,7 +78,9 @@ public class VolumetricPlayer : MonoBehaviour
 
    [Space(10)]
 
+   public bool ApplyMaterialAtStart = false;
    public Material MaterialToApply;
+   public string TextureProperty = "";
    [InspectorButton("_DebugApplyMaterial")]
    public bool ApplyMaterial;
 
@@ -140,6 +142,11 @@ public class VolumetricPlayer : MonoBehaviour
 
          if ((_lastFrameIdx >= startFrameIdx) && (_lastFrameIdx <= endFrameIdx))
             return i;
+      }
+
+      if(ApplyMaterialAtStart)
+      {
+         _DebugApplyMaterial();
       }
 
       //should never get here
@@ -238,7 +245,12 @@ public class VolumetricPlayer : MonoBehaviour
          _curStepShowing = CurStep;
       }
 
-      if(_playbackState == PlaybackState.Playing)
+      if(SeqType == SequenceType.SyncWithOtherSequencer)
+      {
+         SetPlaybackState(SequenceToSyncWith.GetPlaybackState());
+      }
+
+      if (_playbackState == PlaybackState.Playing)
       {
          if(SeqType == SequenceType.MeshSequence)
          {
@@ -332,14 +344,19 @@ public class VolumetricPlayer : MonoBehaviour
       List<Renderer> rnds = new List<Renderer>();
       foreach(var m in MeshSequence)
       {
-         Renderer r = m.GetComponentInChildren<Renderer>();
+         Renderer r = m.GetComponentInChildren<Renderer>(true);
          if (r)
             rnds.Add(r);
       }
 
       foreach(var r in rnds)
       {
-         r.material = MaterialToApply;
+         Material oldMat = r.material;
+         Texture oldTex = oldMat.mainTexture;
+
+         Material dupedMaterial = Instantiate(MaterialToApply);
+         dupedMaterial.SetTexture(TextureProperty, oldTex);
+         r.material = dupedMaterial;
       }
    }
 }
