@@ -1144,10 +1144,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3552695044458748656, guid: 6e004a5a92899254a8fb2fa540a1e4bb, type: 3}
-      propertyPath: CurStep
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3552695044458748656, guid: 6e004a5a92899254a8fb2fa540a1e4bb, type: 3}
       propertyPath: OnStepChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1531229553}
@@ -1198,10 +1194,6 @@ PrefabInstance:
     - target: {fileID: 3552695044458748659, guid: 6e004a5a92899254a8fb2fa540a1e4bb, type: 3}
       propertyPath: m_Name
       value: athena_dance_full
-      objectReference: {fileID: 0}
-    - target: {fileID: 3552695044458748659, guid: 6e004a5a92899254a8fb2fa540a1e4bb, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e004a5a92899254a8fb2fa540a1e4bb, type: 3}
