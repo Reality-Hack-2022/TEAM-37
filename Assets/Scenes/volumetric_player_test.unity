@@ -1254,23 +1254,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3552695044458748656, guid: 6e004a5a92899254a8fb2fa540a1e4bb, type: 3}
       propertyPath: CurStep
-      value: 4
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3552695044458748656, guid: 6e004a5a92899254a8fb2fa540a1e4bb, type: 3}
       propertyPath: CurFrame
-      value: 232
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3552695044458748656, guid: 6e004a5a92899254a8fb2fa540a1e4bb, type: 3}
       propertyPath: CurProgress
-      value: 0.96666664
+      value: 0.16666667
       objectReference: {fileID: 0}
     - target: {fileID: 3552695044458748656, guid: 6e004a5a92899254a8fb2fa540a1e4bb, type: 3}
       propertyPath: ComputedStep
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3552695044458748656, guid: 6e004a5a92899254a8fb2fa540a1e4bb, type: 3}
       propertyPath: NumLoopBeats
-      value: 25
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 3552695044458748656, guid: 6e004a5a92899254a8fb2fa540a1e4bb, type: 3}
       propertyPath: Steps.Array.size
@@ -1302,7 +1302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3552695044458748656, guid: 6e004a5a92899254a8fb2fa540a1e4bb, type: 3}
       propertyPath: Steps.Array.data[1].NumLoopBeats
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3552695044458748656, guid: 6e004a5a92899254a8fb2fa540a1e4bb, type: 3}
       propertyPath: Steps.Array.data[2].NumLoopBeats
