@@ -102,7 +102,7 @@ public class InputMgr : MonoBehaviour
     public void StartTutorial(int startStep = 0)
     {
         ProgressionMgr.instance.StartTutorial(startStep);
-        Debug.Log("Start");
+        //Debug.Log($"Start with {startStep}");
     }
     public void ExitTutorial()
     {
