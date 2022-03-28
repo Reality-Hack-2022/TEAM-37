@@ -8,6 +8,14 @@ public struct PlayPauseInfo
     public Sprite pause;
     public Sprite play;
 }
+
+[System.Serializable]
+public struct SlowSpeedUpInfo
+{
+   public Sprite SlowDown;
+   public Sprite SpeedUp;
+}
+
 public class ProgressionMgr : MonoBehaviour
 {
     public static ProgressionMgr instance;
@@ -26,6 +34,8 @@ public class ProgressionMgr : MonoBehaviour
     public GameObject tutorialPanel;
     public SpriteRenderer playPausePanel;
     public PlayPauseInfo playPause;
+    public SpriteRenderer slowSpeedPanel;
+    public SlowSpeedUpInfo slowSpeed;
     public SpriteRenderer contentPoster;
     public List<Sprite> contentPanels = new List<Sprite>();
 
@@ -146,11 +156,15 @@ public class ProgressionMgr : MonoBehaviour
     {
         if (playbackSpeed == 1)
         {
+            if (slowSpeedPanel)
+               slowSpeedPanel.sprite = slowSpeed.SpeedUp;
             StartCoroutine(SetSpeed(0.5f, 1));
-        }
+                    }
         else
         {
-            StartCoroutine(SetSpeed(1f, 1));
+         if (slowSpeedPanel)
+            slowSpeedPanel.sprite = slowSpeed.SlowDown;
+         StartCoroutine(SetSpeed(1f, 1));
         }
     }
 

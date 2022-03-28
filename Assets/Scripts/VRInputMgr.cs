@@ -10,6 +10,34 @@ public class VRInputMgr : MonoBehaviour
       Right
    }
 
+   public static Vector3 GetHeadPos()
+   {
+      if(CamMgr.I && (CamMgr.I.CamType == CamMgr.CamMode.Oculus) && CamMgr.I.OculusRig)
+         return CamMgr.I.OculusRig.GetComponent<OVRCameraRig>().centerEyeAnchor.position;
+
+      return Vector3.zero;
+   }
+
+   public static Quaternion GetHeadRot()
+   {
+      if (CamMgr.I && (CamMgr.I.CamType == CamMgr.CamMode.Oculus) && CamMgr.I.OculusRig)
+         return CamMgr.I.OculusRig.GetComponent<OVRCameraRig>().centerEyeAnchor.rotation;
+
+      return Quaternion.identity;
+   }
+
+   public static Vector3 GetHandPos(Hand hand)
+   {
+      Vector3 localPos = (OVRInput.GetLocalControllerPosition((hand == Hand.Left) ? OVRInput.Controller.LTouch : OVRInput.Controller.RTouch));
+      return CamMgr.I.OculusRig.transform.TransformPoint(localPos);
+   }
+
+   public static Quaternion GetHandRot(Hand hand)
+   {
+      Quaternion localRot = (OVRInput.GetLocalControllerRotation((hand == Hand.Left) ? OVRInput.Controller.LTouch : OVRInput.Controller.RTouch));
+      return CamMgr.I.OculusRig.transform.rotation * localRot;
+   }
+
 
    public static bool GetTriggerDown(Hand hand)
    {

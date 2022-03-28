@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 using Melanchall.DryWetMidi.Smf;
 using Melanchall.DryWetMidi.Smf.Interaction;
 
@@ -157,42 +158,73 @@ public class SongMgr : MonoBehaviour
 
       _tempoMap = null;
 
-      string fullMidiPath = Application.streamingAssetsPath + "/" + path;
-      if (Application.platform == RuntimePlatform.Android)
+      //Read from resources (where midi expected to have .bytes extension) or Streaming Assets?
+      const bool kReadFromResources = true;
+
+      if(kReadFromResources)
       {
+         //string off extension for loading from resources
+         //NOTE: we expect to files in resources folder to have the .bytes extension
+         path = path.Replace(".mid", "");
+
          try
          {
-            WWW r = new WWW(fullMidiPath);
-            while (!r.isDone) { }
-
-            System.IO.MemoryStream stream = new System.IO.MemoryStream(r.bytes);
-            _midiFile = MidiFile.Read(stream);
+            TextAsset asset = Resources.Load(path) as TextAsset;
+            Stream s = new MemoryStream(asset.bytes);
+            _midiFile = MidiFile.Read(s);
          }
          catch (System.Exception e)
          {
-            Debug.LogWarning("unable to load midi file: " + e.Message);
+            Debug.LogWarning("unable to load midi file " + path  +  " from resources: " + e.Message);
          }
+
+         if (_midiFile == null)
+         {
+            Debug.LogWarning("FAILED to Load midi resource '" + path + "'");
+            return false;
+         }
+         else
+            Debug.Log("Loaded midi resource '" + path + "'");
       }
       else
       {
-         try
+         string fullMidiPath = Application.streamingAssetsPath + "/" + path;
+         if (Application.platform == RuntimePlatform.Android)
          {
-            _midiFile = MidiFile.Read(fullMidiPath);
+            try
+            {
+               WWW r = new WWW(fullMidiPath);
+               while (!r.isDone) { }
+
+               System.IO.MemoryStream stream = new System.IO.MemoryStream(r.bytes);
+               _midiFile = MidiFile.Read(stream);
+            }
+            catch (System.Exception e)
+            {
+               Debug.LogWarning("unable to load midi file: " + e.Message);
+            }
          }
-         catch (System.Exception e)
+         else
          {
-            Debug.LogWarning("unable to load midi file: " + e.Message);
+            try
+            {
+               _midiFile = MidiFile.Read(fullMidiPath);
+            }
+            catch (System.Exception e)
+            {
+               Debug.LogWarning("unable to load midi file: " + e.Message);
+            }
+
          }
 
+         if (_midiFile == null)
+         {
+            Debug.LogWarning("FAILED to Load '" + fullMidiPath + "'");
+            return false;
+         }
+         else
+            Debug.Log("Loaded '" + fullMidiPath + "'");
       }
-
-      if (_midiFile == null)
-      {
-         Debug.LogWarning("FAILED to Load '" + fullMidiPath + "'");
-         return false;
-      }
-      else
-         Debug.Log("Loaded '" + fullMidiPath + "'");
 
 
       _tempoMap = _midiFile.GetTempoMap();

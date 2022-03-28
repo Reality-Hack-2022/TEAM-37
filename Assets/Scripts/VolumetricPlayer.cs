@@ -225,7 +225,7 @@ public class VolumetricPlayer : MonoBehaviour
       }
 
       //drive song state in sync with our state, if configured
-      if(DriveSongPlaybackState && SongMgr.I)
+      if(DriveSongPlaybackState && SongMgr.I && (SeqType != SequenceType.SyncWithOtherSequencer))
       {
          if (newState == PlaybackState.Paused)
             SongMgr.I.SetPaused(true);

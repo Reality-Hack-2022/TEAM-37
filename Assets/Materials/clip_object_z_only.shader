@@ -46,7 +46,7 @@ Shader "Shader Forge/clip_object_z_only" {
             #pragma multi_compile DIRLIGHTMAP_OFF DIRLIGHTMAP_COMBINED DIRLIGHTMAP_SEPARATE
             #pragma multi_compile DYNAMICLIGHTMAP_OFF DYNAMICLIGHTMAP_ON
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles 
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 
             #pragma target 3.0
             uniform float4 _Color;
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
@@ -246,7 +246,7 @@ Shader "Shader Forge/clip_object_z_only" {
             #pragma multi_compile DIRLIGHTMAP_OFF DIRLIGHTMAP_COMBINED DIRLIGHTMAP_SEPARATE
             #pragma multi_compile DYNAMICLIGHTMAP_OFF DYNAMICLIGHTMAP_ON
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles 
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 
             #pragma target 3.0
             uniform float4 _Color;
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
@@ -382,7 +382,7 @@ Shader "Shader Forge/clip_object_z_only" {
             #pragma multi_compile DIRLIGHTMAP_OFF DIRLIGHTMAP_COMBINED DIRLIGHTMAP_SEPARATE
             #pragma multi_compile DYNAMICLIGHTMAP_OFF DYNAMICLIGHTMAP_ON
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles 
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 
             #pragma target 3.0
             uniform float _yMin;
             uniform float _yMax;
@@ -444,7 +444,7 @@ Shader "Shader Forge/clip_object_z_only" {
             #pragma multi_compile DIRLIGHTMAP_OFF DIRLIGHTMAP_COMBINED DIRLIGHTMAP_SEPARATE
             #pragma multi_compile DYNAMICLIGHTMAP_OFF DYNAMICLIGHTMAP_ON
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles 
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 
             #pragma target 3.0
             uniform float4 _Color;
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;

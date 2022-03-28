@@ -8,9 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Oculus/SampleFramework/Usage/Passthrough/Scenes/AugmentedObjects.unity
     guid: 9afeada2bbd240b4981cfb6abb525418
-  - enabled: 1
+  - enabled: 0
     path: Assets/Oculus/SampleFramework/Usage/Passthrough/Scenes/PassthroughHands.unity
     guid: c94e480e4a6da614693c0cd3372e2d2d
+  - enabled: 0
+    path: Assets/Scenes/testScene.unity
+    guid: 80b5ee25de3520f45ab83956e408ba2c
+  - enabled: 1
+    path: Assets/Scenes/testScene_new_layout.unity
+    guid: 815934bc7495ef34da4144b0d5b66499
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 90145f90f4fbe5448b73aff56131dcbe, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1e8322cd097e22c498a6154a10766c8b, type: 2}

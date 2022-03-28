@@ -7,10 +7,44 @@ using UnityEngine.UI;
 
 public class InputMgr : MonoBehaviour
 {
+
+   public bool PlayOnStart = false;
+   public int StartStep = -1;
     public GameObject volumeSlider;
     public GameObject playThroughSwitch;
     public GameObject tutorialPanel;
     public GameObject mainMenuPanel;
+
+   void Start()
+   {
+      if(PlayOnStart)
+         StartTutorial(StartStep);
+
+      if(UIMgr.I)
+      {
+         UIMgr.I.OnUIItemSelected.AddListener(_OnUIItemSelected);
+      }
+   }
+
+   void _OnUIItemSelected(UIItem item)
+   {
+      if(item.PanelType == UIPanel.Learn)
+         StartTutorial(0);
+      else if(item.PanelType == UIPanel.Play)
+         StartTutorial(-1);
+      else if (item.PanelType == UIPanel.Back)
+         PreviousTutorialElement();
+      else if (item.PanelType == UIPanel.Next)
+         NextTutorialElement();
+      else if (item.PanelType == UIPanel.Home)
+         ExitTutorial();
+      else if (item.PanelType == UIPanel.PauseToggle)
+         TogglePaused();
+      else if (item.PanelType == UIPanel.SlowToggle)
+         ToggleSlow();
+
+   }
+
     private void Update()
     {
         //IN THE MAIN MENU

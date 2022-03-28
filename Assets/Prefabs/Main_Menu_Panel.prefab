@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2744950207396240368}
   - component: {fileID: 2744950207396240371}
-  m_Layer: 0
+  - component: {fileID: 2307942209066557160}
+  - component: {fileID: 5074732062342678862}
+  m_Layer: 5
   m_Name: Learn Poster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,6 +84,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &2307942209066557160
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744950207396240369}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 29.262228, y: 16.460001, z: 0.20000096}
+  m_Center: {x: 0, y: -0.0000038146973, z: 0.000015258789}
+--- !u!114 &5074732062342678862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744950207396240369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56c64a38ff6aa647877c5dcebb0b41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PanelType: 1
 --- !u!1 &2744950208533793416
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +153,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2744950208908118730}
   - component: {fileID: 2744950208908118725}
-  m_Layer: 0
+  - component: {fileID: 584731573146083249}
+  - component: {fileID: 9070484091966189508}
+  m_Layer: 5
   m_Name: Play Poster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,6 +227,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &584731573146083249
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744950208908118731}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 29.262228, y: 16.46, z: 0.2000028}
+  m_Center: {x: 0, y: -0.000005722046, z: 0.000015258789}
+--- !u!114 &9070484091966189508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744950208908118731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56c64a38ff6aa647877c5dcebb0b41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PanelType: 2
 --- !u!1 &9212973696839312589
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8624706252902343070}
   - component: {fileID: 1684095853932100587}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Welcome Poster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
