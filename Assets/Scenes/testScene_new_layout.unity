@@ -531,8 +531,8 @@ MonoBehaviour:
     play: {fileID: 21300000, guid: 0bba8f2a2dc6dfa40928c96f0e48e094, type: 3}
   slowSpeedPanel: {fileID: 139919658}
   slowSpeed:
-    SlowDown: {fileID: 21300000, guid: 95e7f32527148cd489810daa8aa29358, type: 3}
-    SpeedUp: {fileID: 21300000, guid: fd66b0e6d14c8974fa8cb1150e679fa9, type: 3}
+    SlowDown: {fileID: 21300000, guid: def0e4da4c4e80b4e86e7153b8a42ecc, type: 3}
+    SpeedUp: {fileID: 21300000, guid: 13a2c98823b831543b70563242a1c60b, type: 3}
   contentPoster: {fileID: 6169346}
   contentPanels:
   - {fileID: 21300000, guid: 52423643746413443bf917c75f9c6906, type: 3}
