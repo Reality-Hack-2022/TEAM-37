@@ -116,7 +116,7 @@ public class ProgressionMgr : MonoBehaviour
     }
     public void SetUIElement(int i = 0)
     {
-        if (contentPanels[i])
+        if ((i < contentPanels.Count) && contentPanels[i])
             contentPoster.sprite = contentPanels[i];
         Debug.Log($"Try Content Panel Change {i}");
     }
