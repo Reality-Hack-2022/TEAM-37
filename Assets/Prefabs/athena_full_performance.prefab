@@ -1548,18 +1548,27 @@ MonoBehaviour:
   CurStep: 4
   StepProgressIsFrames: 1
   Steps:
-  - StartProgress: 45
+  - StartProgress: 44
     EndProgress: 112
     NumLoopBeats: 8
   - StartProgress: 113
-    EndProgress: 180
+    EndProgress: 177
     NumLoopBeats: 8
-  - StartProgress: 181
+  - StartProgress: 178
+    EndProgress: 208
+    NumLoopBeats: 4
+  - StartProgress: 207
     EndProgress: 311
-    NumLoopBeats: 16
+    NumLoopBeats: 12
   - StartProgress: 310
+    EndProgress: 356
+    NumLoopBeats: 6
+  - StartProgress: 355
+    EndProgress: 405
+    NumLoopBeats: 6
+  - StartProgress: 405
     EndProgress: 470
-    NumLoopBeats: 20
+    NumLoopBeats: 8
   - StartProgress: 45
     EndProgress: 470
     NumLoopBeats: 52
