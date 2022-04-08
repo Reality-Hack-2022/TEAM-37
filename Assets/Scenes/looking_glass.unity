@@ -13733,7 +13733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayOnStart: 1
-  StartStep: 7
+  StartStep: -1
   volumeSlider: {fileID: 0}
   playThroughSwitch: {fileID: 0}
   tutorialPanel: {fileID: 0}

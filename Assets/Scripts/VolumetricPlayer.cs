@@ -30,6 +30,12 @@ public class VolumetricPlayer : MonoBehaviour
 
    public bool BeatSync = false;
    public float NumLoopBeats = 4.0f;
+   
+   [Space(10)]
+
+   public int LoopStartFrameIdx = 0;
+   public bool OverrideEndFrame = false;
+   public int LoopEndFrameIdx = 0;
 
    public enum SequenceType
    {
@@ -89,12 +95,22 @@ public class VolumetricPlayer : MonoBehaviour
    public bool ApplyMaterial;
 
    //when steps have a timeout before they can repeat, we schedule them
-   class ScheduledLoop
+   public class ScheduledLoop
    {
       public float StartBeat = 0.0f; //when the loop starts playing
       public float EndBeat = 0.0f; //when the loop is finished
       public int StepIdx = -1; 
       public float PrerollBeats = 0.0f; //the # of beats of "preroll" animation we show leading into the first frame
+
+      public float ScheduleBeat = 0.0f; //what beat were we scheduled on (i.e when did we submit this scheduled loop?)
+   }
+
+   public enum ScheduledLoopState
+   {
+      None,
+      Waiting,
+      Preroll,
+      Playing
    }
 
    //events
@@ -105,12 +121,15 @@ public class VolumetricPlayer : MonoBehaviour
    PlaybackState _playbackState = PlaybackState.Stopped;
    float _lastFrame = 0.0f;
    int _lastFrameIdx = 0;
+   float _lastLoopProgress = 0.0f;
 
    float _startTime = 0.0f;
 
    int _curStepShowing = -1;
 
    int _numRepeatsShown = 0;
+
+   ScheduledLoopState _curScheduledState = ScheduledLoopState.None;
 
    //how many preroll beats do we want to show when playing a scheduled loop?
    const float kNumPrerollBeats = 2.0f;
@@ -128,11 +147,17 @@ public class VolumetricPlayer : MonoBehaviour
       return false;
    }
 
+   public ScheduledLoopState GetScheduledState() { return _curScheduledState; }
+   public ScheduledLoop GetScheduledLoop() { return _curScheduledLoop; }
+
+   public float GetLoopProgress() { return _lastLoopProgress; }
+
    //schedule the given step to play at the given beat
    public void ScheduleStep(int stepIdx, float relativeToBeat = -1.0f)
    {
       //schedule start of loop on nearest downbeat that also gives time for our preroll beats to play
-      float startBeat = (relativeToBeat >= 0.0f) ? relativeToBeat : SongMgr.I.CurBeat;
+      float scheduledBeat = (relativeToBeat >= 0.0f) ? relativeToBeat : SongMgr.I.CurBeat; 
+      float startBeat = scheduledBeat;
       startBeat += kNumPrerollBeats;
       //quantize to nearest downbeat (assuming 4/4 time signature!)
       const float kQuantizeBeats = 4.0f;
@@ -141,6 +166,7 @@ public class VolumetricPlayer : MonoBehaviour
 
 
       ScheduledLoop sl = new ScheduledLoop();
+      sl.ScheduleBeat = scheduledBeat;
       sl.StartBeat = startBeat;
       sl.EndBeat = startBeat + Steps[stepIdx].NumLoopBeats;
       sl.StepIdx = stepIdx;
@@ -148,11 +174,14 @@ public class VolumetricPlayer : MonoBehaviour
       sl.PrerollBeats = Mathf.Min(kNumPrerollBeats, Steps[stepIdx].WaitBeatsToRepeat * .5f);
 
       _curScheduledLoop = sl;
+
+      _curScheduledState = ScheduledLoopState.Waiting;
    }
 
    public void CancelScheduledStep()
    {
       _curScheduledLoop = null;
+      _curScheduledState = ScheduledLoopState.None;
    }
 
    public bool GotoPreviousStep()
@@ -245,8 +274,9 @@ public class VolumetricPlayer : MonoBehaviour
       {
          _startTime = 0.0f;
          _lastFrame = 0.0f;
+         _lastLoopProgress = 0.0f;
          //reschedule loop if we were in the middle of a scheduled loop when playback stopped
-         if(_curScheduledLoop != null)
+         if (_curScheduledLoop != null)
          {
             if (CurStep == _curScheduledLoop.StepIdx)
                ScheduleStep(CurStep);
@@ -347,8 +377,8 @@ public class VolumetricPlayer : MonoBehaviour
       {
          if(SeqType == SequenceType.MeshSequence)
          {
-            int startFrameIdx = 0;
-            int endFrameIdx = MeshSequence.Length - 1;
+            int startFrameIdx = LoopStartFrameIdx;
+            int endFrameIdx = OverrideEndFrame ? LoopEndFrameIdx : MeshSequence.Length - 1;
             Step curStep = null;
             if((CurStep >= 0) && (CurStep < Steps.Length))
             {
@@ -375,8 +405,11 @@ public class VolumetricPlayer : MonoBehaviour
                      //keep frozen until our preroll region
                      float prerollStart = _curScheduledLoop.StartBeat - _curScheduledLoop.PrerollBeats;
                      float prerollEnd = _curScheduledLoop.StartBeat;
-                     if(curBeat >= prerollStart) //play preroll portion
+                     _curScheduledState = ScheduledLoopState.Waiting;
+                     if (curBeat >= prerollStart) //play preroll portion
                      {
+                        _curScheduledState = ScheduledLoopState.Preroll;
+
                         //figure out how many preroll frames we have
                         float framesPerBeat = (endFrameIdx - startFrameIdx) / stepBeingShown.NumLoopBeats;
                         int numPrerollFrames = Mathf.RoundToInt(framesPerBeat * _curScheduledLoop.PrerollBeats);
@@ -390,10 +423,14 @@ public class VolumetricPlayer : MonoBehaviour
                   }
                   else //in scheduled playback region
                   {
+                     _curScheduledState = ScheduledLoopState.Playing;
+
                      loopProgress = Mathf.InverseLerp(_curScheduledLoop.StartBeat, _curScheduledLoop.EndBeat, curBeat);
                      _lastFrame = Mathf.Lerp(startFrameIdx, endFrameIdx, loopProgress);
                      curFrameIdx = Mathf.FloorToInt(_lastFrame);
                   }
+
+                  _lastLoopProgress = loopProgress;
 
                   //done playing? reschedule!
                   if (Mathf.Approximately(loopProgress, 1.0f))
@@ -410,6 +447,8 @@ public class VolumetricPlayer : MonoBehaviour
 
                   _lastFrame = Mathf.Lerp(startFrameIdx, endFrameIdx, loopProgress);
                   curFrameIdx = Mathf.FloorToInt(_lastFrame);
+
+                  _lastLoopProgress = loopProgress;
                }
             }
             else //play at desired FPS
@@ -419,6 +458,8 @@ public class VolumetricPlayer : MonoBehaviour
                int len = Mathf.Max(0, (endFrameIdx - startFrameIdx));
                curFrameIdx = Mathf.FloorToInt(_lastFrame % len);
                curFrameIdx += startFrameIdx;
+
+               _lastLoopProgress = Mathf.InverseLerp(startFrameIdx, endFrameIdx, curFrameIdx);
             }
 
             //int curFrameIdx = Mathf.FloorToInt(_lastFrame % MeshSequence.Length);
