@@ -57,6 +57,7 @@ public class VolumetricPlayer : MonoBehaviour
       public float EndProgress = 1.0f;
 
       public float NumLoopBeats = 4.0f;
+      public float WaitBeatsToRepeat = 0.0f;
    }
 
    [Header("Outputs")]
@@ -87,10 +88,20 @@ public class VolumetricPlayer : MonoBehaviour
    [InspectorButton("_DebugApplyMaterial")]
    public bool ApplyMaterial;
 
+   //when steps have a timeout before they can repeat, we schedule them
+   class ScheduledLoop
+   {
+      public float StartBeat = 0.0f; //when the loop starts playing
+      public float EndBeat = 0.0f; //when the loop is finished
+      public int StepIdx = -1; 
+      public float PrerollBeats = 0.0f; //the # of beats of "preroll" animation we show leading into the first frame
+   }
+
    //events
    public VolumetricPlayEvent OnPlaybackStateChanged = new VolumetricPlayEvent();
    public VolumetricPlayerStepEvent OnStepChanged = new VolumetricPlayerStepEvent();
 
+   ScheduledLoop _curScheduledLoop = null;
    PlaybackState _playbackState = PlaybackState.Stopped;
    float _lastFrame = 0.0f;
    int _lastFrameIdx = 0;
@@ -100,6 +111,9 @@ public class VolumetricPlayer : MonoBehaviour
    int _curStepShowing = -1;
 
    int _numRepeatsShown = 0;
+
+   //how many preroll beats do we want to show when playing a scheduled loop?
+   const float kNumPrerollBeats = 2.0f;
 
    public int GetLastFrameIdx() { return _lastFrameIdx; }
 
@@ -112,6 +126,33 @@ public class VolumetricPlayer : MonoBehaviour
       }
 
       return false;
+   }
+
+   //schedule the given step to play at the given beat
+   public void ScheduleStep(int stepIdx, float relativeToBeat = -1.0f)
+   {
+      //schedule start of loop on nearest downbeat that also gives time for our preroll beats to play
+      float startBeat = (relativeToBeat >= 0.0f) ? relativeToBeat : SongMgr.I.CurBeat;
+      startBeat += kNumPrerollBeats;
+      //quantize to nearest downbeat (assuming 4/4 time signature!)
+      const float kQuantizeBeats = 4.0f;
+      float mod = startBeat % kQuantizeBeats;
+      startBeat += (kQuantizeBeats - mod);
+
+
+      ScheduledLoop sl = new ScheduledLoop();
+      sl.StartBeat = startBeat;
+      sl.EndBeat = startBeat + Steps[stepIdx].NumLoopBeats;
+      sl.StepIdx = stepIdx;
+      //show the preroll for a fixed # of beats or half the wait beats (if smaller than our ideal preroll)      
+      sl.PrerollBeats = Mathf.Min(kNumPrerollBeats, Steps[stepIdx].WaitBeatsToRepeat * .5f);
+
+      _curScheduledLoop = sl;
+   }
+
+   public void CancelScheduledStep()
+   {
+      _curScheduledLoop = null;
    }
 
    public bool GotoPreviousStep()
@@ -204,6 +245,14 @@ public class VolumetricPlayer : MonoBehaviour
       {
          _startTime = 0.0f;
          _lastFrame = 0.0f;
+         //reschedule loop if we were in the middle of a scheduled loop when playback stopped
+         if(_curScheduledLoop != null)
+         {
+            if (CurStep == _curScheduledLoop.StepIdx)
+               ScheduleStep(CurStep);
+            else
+               CancelScheduledStep();
+         }
       }
 
       if(SeqType == SequenceType.Timeline)
@@ -280,6 +329,12 @@ public class VolumetricPlayer : MonoBehaviour
          {
             OnStepChanged.Invoke(CurStep);
             _curStepShowing = CurStep;
+
+            //this is a step that needs to be scheduled because its not a simple loop
+            if ((CurStep >= 0) && (Steps[CurStep].WaitBeatsToRepeat > 0.0f))
+               ScheduleStep(CurStep);
+            else
+               CancelScheduledStep();
          }
       }
 
@@ -303,17 +358,59 @@ public class VolumetricPlayer : MonoBehaviour
             }
 
             int curFrameIdx = _lastFrameIdx;
+
             if(BeatSync) //scrub in sync with the beat
             {
-               int stepIdxBeingShow = ComputeCurrentStep();
-               Step stepBeingShow = (stepIdxBeingShow >= 0) && (stepIdxBeingShow < Steps.Length) ? Steps[stepIdxBeingShow] : null;
+               if (_curScheduledLoop != null) //specially scheduled playthru
+               {
+                  Step stepBeingShown = Steps[_curScheduledLoop.StepIdx];
+                  startFrameIdx = _StepToStartFrame(stepBeingShown);
+                  endFrameIdx = _StepToEndFrame(stepBeingShown);
 
-               float loopBeats = (curStep != null) ? stepBeingShow.NumLoopBeats : NumLoopBeats;
+                  float loopProgress = 0.0f;
 
-               float loopProgress = (SongMgr.I.CurBeat % loopBeats) / loopBeats;
+                  float curBeat = SongMgr.I.CurBeat;
+                  if (curBeat < _curScheduledLoop.StartBeat) //waiting for start, also handle preroll
+                  {
+                     //keep frozen until our preroll region
+                     float prerollStart = _curScheduledLoop.StartBeat - _curScheduledLoop.PrerollBeats;
+                     float prerollEnd = _curScheduledLoop.StartBeat;
+                     if(curBeat >= prerollStart) //play preroll portion
+                     {
+                        //figure out how many preroll frames we have
+                        float framesPerBeat = (endFrameIdx - startFrameIdx) / stepBeingShown.NumLoopBeats;
+                        int numPrerollFrames = Mathf.RoundToInt(framesPerBeat * _curScheduledLoop.PrerollBeats);
+                        int prerollStartFrame = Mathf.Max(0, startFrameIdx - numPrerollFrames);
+                        int prerollEndFrame = Mathf.Max(0, startFrameIdx - 1);
 
-               _lastFrame = Mathf.Lerp(startFrameIdx, endFrameIdx, loopProgress);
-               curFrameIdx = Mathf.FloorToInt(_lastFrame);
+                        float prerollProgress = Mathf.InverseLerp(prerollStart, prerollEnd, curBeat);
+                        _lastFrame = Mathf.Lerp(prerollStartFrame, prerollEndFrame, prerollProgress);
+                        curFrameIdx = Mathf.FloorToInt(_lastFrame);
+                     }
+                  }
+                  else //in scheduled playback region
+                  {
+                     loopProgress = Mathf.InverseLerp(_curScheduledLoop.StartBeat, _curScheduledLoop.EndBeat, curBeat);
+                     _lastFrame = Mathf.Lerp(startFrameIdx, endFrameIdx, loopProgress);
+                     curFrameIdx = Mathf.FloorToInt(_lastFrame);
+                  }
+
+                  //done playing? reschedule!
+                  if (Mathf.Approximately(loopProgress, 1.0f))
+                     ScheduleStep(_curScheduledLoop.StepIdx, _curScheduledLoop.EndBeat);                  
+               }
+               else //normal seamless looping step
+               {
+                  int stepIdxBeingShow = ComputeCurrentStep();
+                  Step stepBeingShow = (stepIdxBeingShow >= 0) && (stepIdxBeingShow < Steps.Length) ? Steps[stepIdxBeingShow] : null;
+
+                  float loopBeats = (curStep != null) ? stepBeingShow.NumLoopBeats : NumLoopBeats;
+
+                  float loopProgress = (SongMgr.I.CurBeat % loopBeats) / loopBeats;
+
+                  _lastFrame = Mathf.Lerp(startFrameIdx, endFrameIdx, loopProgress);
+                  curFrameIdx = Mathf.FloorToInt(_lastFrame);
+               }
             }
             else //play at desired FPS
             {
