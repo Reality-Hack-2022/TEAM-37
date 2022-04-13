@@ -74,6 +74,11 @@ public class UIMgr : MonoBehaviour
       }
    }
 
+   public void TriggerItemSelected(UIItem item)
+   {
+      OnUIItemSelected.Invoke(item);
+   }
+
    void Update()
    {
       _lastHitItem = null;
@@ -110,7 +115,7 @@ public class UIMgr : MonoBehaviour
          _lastHitItem.NotifyHighlighted(true);
          if (VRInputMgr.GetTriggerDown(LaserPointer.GetActiveHand()))
          {
-            OnUIItemSelected.Invoke(_lastHitItem);
+            TriggerItemSelected(_lastHitItem);
          }
       }
 

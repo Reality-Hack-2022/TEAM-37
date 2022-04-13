@@ -89,7 +89,8 @@ public class VolumetricPlayerUI : MonoBehaviour
             float startBeat = scheduledInfo.StartBeat;
             float beatsTillStart = (startBeat - curBeat);
             int beatToShow = Mathf.CeilToInt(beatsTillStart);
-            if ((curBeat - scheduledInfo.ScheduleBeat) < 1.0f) //dont show first countin beat, to give a little space
+            //if ((curBeat - scheduledInfo.ScheduleBeat) < 1.0f) //dont show first countin beat, to give a little space
+            if((scheduledInfo.StartBeat - curBeat) > 3.0f) //only show countdown the last 3 beats
                ScheduledCountInText.text = "";
             else
                ScheduledCountInText.text = beatToShow.ToString();
