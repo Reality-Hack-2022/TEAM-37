@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Oculus.Interaction;
 
 public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -17,10 +18,18 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
    public Button TriggerButton;
 
-   Vector3 _initialLocalScale = Vector3.one;   
+   Vector3 _initialLocalScale = Vector3.one;
+   InteractableUnityEventWrapper _ovrInteractor = null; //if we're on an Oculus Interaction System widget
 
    void Start()
    {
+      //hook into oculus interaction events
+      _ovrInteractor = GetComponent<InteractableUnityEventWrapper>();
+      if(_ovrInteractor)
+      {
+         _ovrInteractor.WhenSelect.AddListener(_OnOVRSelected);
+      }
+
       if (UIMgr.I)
          UIMgr.I.RegisterItem(this);
       _initialLocalScale = this.transform.localScale;
@@ -30,6 +39,11 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
          TriggerButton.onClick.AddListener(_OnButtonPressed);
  
       }
+   }
+
+   void _OnOVRSelected()
+   {
+      UIMgr.I.TriggerItemSelected(this);
    }
 
    void _OnButtonPressed()

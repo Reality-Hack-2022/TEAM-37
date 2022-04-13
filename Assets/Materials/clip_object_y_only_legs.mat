@@ -75,7 +75,7 @@ Material:
     - _ZWrite: 1
     - _xMax: 4
     - _xMin: -4
-    - _yMax: 0.4
+    - _yMax: 0.32
     - _yMin: 0.02
     - _zMax: 4
     - _zMin: -4
