@@ -36,6 +36,8 @@ public class ProgressionMgr : MonoBehaviour
     public PlayPauseInfo playPause;
     public SpriteRenderer slowSpeedPanel;
     public SlowSpeedUpInfo slowSpeed;
+    public GameObject nextPanel;
+    public GameObject prevPanel;
     public SpriteRenderer contentPoster;
     public List<Sprite> contentPanels = new List<Sprite>();
 
@@ -71,6 +73,14 @@ public class ProgressionMgr : MonoBehaviour
     public void StartTutorial(int startStep = 0)
     {
         Debug.Log($"Starting Tutorial in Progression MGR from step {startStep}");
+
+        bool isStepByStep = startStep >= 0;
+
+        if(nextPanel)
+          nextPanel.SetActive(isStepByStep);
+        if(prevPanel)
+          prevPanel.SetActive(isStepByStep);
+        contentPoster.gameObject.SetActive(isStepByStep);
 
         volumetricPlayer.CurStep = startStep;
         volumetricPlayer.gameObject.SetActive(true);
