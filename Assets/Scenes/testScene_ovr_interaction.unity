@@ -498,6 +498,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: athena_full_performance
       objectReference: {fileID: 0}
+    - target: {fileID: 8949535222806262549, guid: fa076e1916156ae4dbaca4f537a9a24f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8949535222806262551, guid: fa076e1916156ae4dbaca4f537a9a24f, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -4285,7 +4289,7 @@ PrefabInstance:
       objectReference: {fileID: 856641064}
     - target: {fileID: 2474091450809718005, guid: 7f7d81c4fb0d18349b242f4590361fa0, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2474091450809718005, guid: 7f7d81c4fb0d18349b242f4590361fa0, type: 3}
       propertyPath: m_LocalScale.x
@@ -4334,6 +4338,10 @@ PrefabInstance:
     - target: {fileID: 2474091450809718007, guid: 7f7d81c4fb0d18349b242f4590361fa0, type: 3}
       propertyPath: m_Name
       value: athena_full_performance_legs_only
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683411405059934152, guid: 7f7d81c4fb0d18349b242f4590361fa0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f7d81c4fb0d18349b242f4590361fa0, type: 3}
