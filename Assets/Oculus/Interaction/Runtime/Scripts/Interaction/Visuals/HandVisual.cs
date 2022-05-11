@@ -91,7 +91,7 @@ namespace Oculus.Interaction
                 Hand.WhenHandUpdated -= UpdateSkeleton;
             }
         }
-
+        float _lastMoveTime = -1.0f;
         public void UpdateSkeleton()
         {
             if (!Hand.IsTrackedDataValid)
@@ -115,11 +115,24 @@ namespace Oculus.Interaction
 
             if (_updateRootPose)
             {
+                Vector3 prevPos = (_root != null) ? _root.position : Vector3.zero;
                 if (_root != null && Hand.GetRootPose(out Pose handRootPose))
                 {
                     _root.localPosition = handRootPose.position;
                     _root.localRotation = handRootPose.rotation;
                 }
+                //MMANDEL: hide if hand doesnt move for a small period
+                bool didMove = !Mathf.Approximately(prevPos.x, _root.position.x) || !Mathf.Approximately(prevPos.y, _root.position.y) || !Mathf.Approximately(prevPos.z, _root.position.z);
+                if(didMove)
+                {
+                   _lastMoveTime = Time.time;
+                   _skinnedMeshRenderer.enabled = true;
+                }
+                else if((Time.time - _lastMoveTime) > .15f)
+                {
+                    _skinnedMeshRenderer.enabled = false;
+                }
+                //END
             }
 
             if (_updateRootScale)
