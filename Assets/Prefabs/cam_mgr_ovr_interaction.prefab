@@ -351,7 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hand: {fileID: 7971288379075211254}
   _pokeInteractor: {fileID: 2458263501562777579}
-  _syntheticHand: {fileID: 2503663261669380863}
+  _syntheticHand: {fileID: 1533450402596558767}
   _maxDistanceFromTouchPoint: 0.1
 --- !u!1001 &4171236899374293356
 PrefabInstance:
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hand: {fileID: 8345803439073693238}
   _pokeInteractor: {fileID: 4562275270961638955}
-  _syntheticHand: {fileID: 2216918780795472000}
+  _syntheticHand: {fileID: 7679848308745274881}
   _maxDistanceFromTouchPoint: 0.1
 --- !u!1001 &4379175676437450173
 PrefabInstance:
@@ -1011,9 +1011,9 @@ PrefabInstance:
     - {fileID: 1728152872, guid: 94313e563929cb3499e3989be338a213, type: 3}
     - {fileID: 4566906792845089009, guid: 94313e563929cb3499e3989be338a213, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 94313e563929cb3499e3989be338a213, type: 3}
---- !u!114 &2216918780795472000 stripped
+--- !u!114 &7679848308745274881 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8988191529217776224, guid: 94313e563929cb3499e3989be338a213, type: 3}
+  m_CorrespondingSourceObject: {fileID: 642930805460571361, guid: 94313e563929cb3499e3989be338a213, type: 3}
   m_PrefabInstance: {fileID: 7095539348699321056}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1101,9 +1101,9 @@ PrefabInstance:
     - {fileID: 1669969247, guid: e7fbb376593cff24f9db4ecf8d465aaf, type: 3}
     - {fileID: 1669969246, guid: e7fbb376593cff24f9db4ecf8d465aaf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e7fbb376593cff24f9db4ecf8d465aaf, type: 3}
---- !u!114 &2503663261669380863 stripped
+--- !u!114 &1533450402596558767 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4667601721285096928, guid: e7fbb376593cff24f9db4ecf8d465aaf, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8592730055715483824, guid: e7fbb376593cff24f9db4ecf8d465aaf, type: 3}
   m_PrefabInstance: {fileID: 7095539348729030431}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1228,6 +1228,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 489475375464819941, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: _interactors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 489475375464819941, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: _interactors.Array.data[0]
+      value: 
+      objectReference: {fileID: 4562275270961638955}
+    - target: {fileID: 489475375464819941, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: _interactors.Array.data[1]
+      value: 
+      objectReference: {fileID: 3692437908915609066}
+    - target: {fileID: 489475375464819941, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
       propertyPath: _interactorDrivers.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1239,6 +1251,18 @@ PrefabInstance:
       propertyPath: _interactorDrivers.Array.data[1]
       value: 
       objectReference: {fileID: 3692437908915609066}
+    - target: {fileID: 1712613577531763261, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: _interactors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712613577531763261, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: _interactors.Array.data[0]
+      value: 
+      objectReference: {fileID: 789053468243198140}
+    - target: {fileID: 1712613577531763261, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: _interactors.Array.data[1]
+      value: 
+      objectReference: {fileID: 7850081563514797807}
     - target: {fileID: 1712613577531763261, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
       propertyPath: _interactorDrivers.Array.size
       value: 2
@@ -1388,6 +1412,18 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2513107470557244439, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: _interactors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2513107470557244439, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: _interactors.Array.data[0]
+      value: 
+      objectReference: {fileID: 1035777064320621987}
+    - target: {fileID: 2513107470557244439, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: _interactors.Array.data[1]
+      value: 
+      objectReference: {fileID: 2329444308527770608}
+    - target: {fileID: 2513107470557244439, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
       propertyPath: _interactorDrivers.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1482,6 +1518,14 @@ PrefabInstance:
     - target: {fileID: 3871679481453341891, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
       propertyPath: _onDeactivated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623316095245750527, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663003653091183794, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5069486089257109593, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
       propertyPath: _onActivated.m_PersistentCalls.m_Calls.Array.size
@@ -1607,6 +1651,18 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6624182433218118422, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: _interactors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624182433218118422, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: _interactors.Array.data[0]
+      value: 
+      objectReference: {fileID: 2458263501562777579}
+    - target: {fileID: 6624182433218118422, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: _interactors.Array.data[1]
+      value: 
+      objectReference: {fileID: 85914815796330146}
     - target: {fileID: 6624182433218118422, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
       propertyPath: _interactorDrivers.Array.size
       value: 2

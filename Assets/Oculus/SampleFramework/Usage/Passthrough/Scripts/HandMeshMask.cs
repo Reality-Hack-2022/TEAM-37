@@ -112,22 +112,16 @@ public class HandMeshMask : MonoBehaviour
                 k0taper *= 1.2f;
                 k1taper *= 1.1f;
             }
-            int numBones = referenceHand.Bones.Count;
-            if((baseId < numBones) && ((baseId +1) < numBones))
-               AddKnuckleMesh(knuckleVerts, k0taper, k1taper, referenceHand.Bones[baseId].Transform.position, referenceHand.Bones[baseId + 1].Transform.position);
-            if (((baseId + 1) < numBones) && ((baseId + 2) < numBones))
-               AddKnuckleMesh(knuckleVerts, k1taper, k2taper, referenceHand.Bones[baseId + 1].Transform.position, referenceHand.Bones[baseId + 2].Transform.position);
+            AddKnuckleMesh(knuckleVerts, k0taper, k1taper, referenceHand.Bones[baseId].Transform.position, referenceHand.Bones[baseId + 1].Transform.position);
+            AddKnuckleMesh(knuckleVerts, k1taper, k2taper, referenceHand.Bones[baseId + 1].Transform.position, referenceHand.Bones[baseId + 2].Transform.position);
 
             // for the tip of the finger, the mask needs to be a bit different:
             // the final joint of the skeleton's finger is at the tip, but
             // we need the final joint to be somewhat inside the finger tip, so the radial mask matches
-            if((baseId +2) < numBones)
-            {
-               Vector3 lastKnucklePos = referenceHand.Bones[baseId + 2].Transform.position;
-               Vector3 tipPos = referenceHand.Bones[tipId].Transform.position;
-               Vector3 offsetTipPos = (tipPos - lastKnucklePos) * fingerTipLength + lastKnucklePos;
-               AddKnuckleMesh(knuckleVerts, k2taper, k3taper, lastKnucklePos, offsetTipPos);
-            }
+            Vector3 lastKnucklePos = referenceHand.Bones[baseId + 2].Transform.position;
+            Vector3 tipPos = referenceHand.Bones[tipId].Transform.position;
+            Vector3 offsetTipPos = (tipPos - lastKnucklePos) * fingerTipLength + lastKnucklePos;
+            AddKnuckleMesh(knuckleVerts, k2taper, k3taper, lastKnucklePos, offsetTipPos);
         }
 
         // add palm mesh, which is very different than fingers

@@ -1704,8 +1704,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxInteractors: -1
   _maxSelectingInteractors: -1
+  _pointableElement: {fileID: 8884637006027598932}
   _collider: {fileID: 8884637005126646085}
-  _surface: {fileID: 0}
+  _surface: {fileID: 8884637006659179410}
 --- !u!114 &8884637006027599018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1739,7 +1740,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ffe41fe81087fa41a2062cc69b99615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointable: {fileID: 8884637006027598932}
+  _transferOnSecondSelection: 0
+  _addNewPointsToFront: 0
+  _forwardElement: {fileID: 0}
   _canvas: {fileID: 8884637005726504386}
 --- !u!114 &8884637006027598932
 MonoBehaviour:
@@ -1753,8 +1756,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78f8e52fe10fd9499c5e5c8b3f953fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transferOnSecondSelection: 0
+  _addNewPointsToFront: 0
+  _forwardElement: {fileID: 8884637006027599019}
   _canvasRenderTextureMesh: {fileID: 8884637006027599018}
-  _pointable: {fileID: 8884637006027599017}
 --- !u!114 &8884637006027598933
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2407,7 +2407,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ffe41fe81087fa41a2062cc69b99615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointable: {fileID: 8966148511729737577}
+  _transferOnSecondSelection: 0
+  _addNewPointsToFront: 0
+  _forwardElement: {fileID: 0}
   _canvas: {fileID: 302515917600778020}
 --- !u!224 &83351166189145970
 RectTransform:
@@ -4369,6 +4371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxInteractors: -1
   _maxSelectingInteractors: -1
+  _pointableElement: {fileID: 0}
   _collider: {fileID: 4242892245514579901}
   _surface: {fileID: 0}
 --- !u!224 &4635952219833618391
@@ -5574,6 +5577,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1533450402596558767, guid: d07fef6d098f37747a6a083a417cab17, type: 3}
+      propertyPath: _iModifyDataFromSourceMono
+      value: 
+      objectReference: {fileID: 7095539350067137690}
     - target: {fileID: 2891424544458626300, guid: d07fef6d098f37747a6a083a417cab17, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5618,12 +5625,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7679848308745274881, guid: d07fef6d098f37747a6a083a417cab17, type: 3}
+      propertyPath: _iModifyDataFromSourceMono
+      value: 
+      objectReference: {fileID: 7095539350067137689}
     - target: {fileID: 8791098146840376300, guid: d07fef6d098f37747a6a083a417cab17, type: 3}
       propertyPath: m_Name
       value: cam_mgr_ovr_interaction
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d07fef6d098f37747a6a083a417cab17, type: 3}
+--- !u!114 &7095539350067137689 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 867209636359551993, guid: d07fef6d098f37747a6a083a417cab17, type: 3}
+  m_PrefabInstance: {fileID: 7095539350067137688}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a379f34d4f4f2e408d34f14bfb753ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7095539350067137690 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3557491602727331136, guid: d07fef6d098f37747a6a083a417cab17, type: 3}
+  m_PrefabInstance: {fileID: 7095539350067137688}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a379f34d4f4f2e408d34f14bfb753ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7142589408538210487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6575,8 +6608,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78f8e52fe10fd9499c5e5c8b3f953fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transferOnSecondSelection: 0
+  _addNewPointsToFront: 0
+  _forwardElement: {fileID: 0}
   _canvasRenderTextureMesh: {fileID: 1805942118752101836}
-  _pointable: {fileID: 4633526677374470806}
 --- !u!114 &9031749750223791370
 MonoBehaviour:
   m_ObjectHideFlags: 0
