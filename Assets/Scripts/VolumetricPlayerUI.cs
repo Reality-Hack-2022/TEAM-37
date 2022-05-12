@@ -53,6 +53,8 @@ public class VolumetricPlayerUI : MonoBehaviour
          //hide loop progress when waiting for a scheduled loop to start
          if (shouldShow && ((_player.GetScheduledState() == VolumetricPlayer.ScheduledLoopState.Waiting) || (_player.GetScheduledState() == VolumetricPlayer.ScheduledLoopState.Preroll)))
             shouldShow = false;
+         if (_player.GetPlaybackState() != VolumetricPlayer.PlaybackState.Playing)
+            shouldShow = false;
          LoopProgressParent.SetActive(shouldShow);
 
          if(shouldShow)

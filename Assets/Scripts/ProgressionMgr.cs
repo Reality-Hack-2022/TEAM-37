@@ -30,6 +30,7 @@ public class ProgressionMgr : MonoBehaviour
 
 
     [Header("UI Objects")]
+    public StartSongUI startSongUI;
     public GameObject mainMenuPanel;
     public GameObject tutorialPanel;
     public SpriteRenderer playPausePanel;
@@ -61,6 +62,8 @@ public class ProgressionMgr : MonoBehaviour
     {
         mainMenuPanel.SetActive(true);
         tutorialPanel.SetActive(false);
+        if(startSongUI) 
+          startSongUI.OnSongStarted.AddListener(_OnStartSongUIComplete);
     }
 
     
@@ -79,13 +82,12 @@ public class ProgressionMgr : MonoBehaviour
         if(nextPanel)
           nextPanel.SetActive(isStepByStep);
         if(prevPanel)
-          prevPanel.SetActive(isStepByStep);
-        contentPoster.gameObject.SetActive(isStepByStep);
+          prevPanel.SetActive(isStepByStep);        
 
         volumetricPlayer.CurStep = startStep;
         volumetricPlayer.gameObject.SetActive(true);
-        volumetricPlayer.SetPlaybackState(VolumetricPlayer.PlaybackState.Playing);
 
+        
         extraVolumetricPlayers.SetActive(true);
         mainMenuPanel.SetActive(false);
         tutorialPanel.SetActive(true);
@@ -96,8 +98,28 @@ public class ProgressionMgr : MonoBehaviour
         volumetricPlayer.CurStep = startStep;
         SetUIElement();
 
-        SetPlaying();
+        //using start song ui? (ie big red button!)
+        if (startSongUI)
+        {
+           contentPoster.gameObject.SetActive(false); //dont show this yet
+           startSongUI.TriggerUI();
+        }
+        else
+        { 
+           contentPoster.gameObject.SetActive(isStepByStep);
+           volumetricPlayer.SetPlaybackState(VolumetricPlayer.PlaybackState.Playing);
+           SetPlaying();
+        }
+
         //Tutorials[whichTutorial].PlayTutorial();
+    }
+
+    void _OnStartSongUIComplete()
+    {
+      bool isStepByStep = volumetricPlayer.CurStep >= 0;
+      contentPoster.gameObject.SetActive(isStepByStep);
+      volumetricPlayer.SetPlaybackState(VolumetricPlayer.PlaybackState.Playing);
+      SetPlaying();
     }
 
     public void ExitTutorial()

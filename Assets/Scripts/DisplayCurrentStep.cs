@@ -35,6 +35,8 @@ public class DisplayCurrentStep : MonoBehaviour
       if (!ProgressionMgr.instance)
          return;
 
-      _SetDisplayStep(ProgressionMgr.instance.volumetricPlayer.ComputedStep);
+      var vol = ProgressionMgr.instance.volumetricPlayer;
+      int step = (vol.GetPlaybackState() == VolumetricPlayer.PlaybackState.Playing) ? vol.ComputedStep : vol.CurStep;
+      _SetDisplayStep(step);
    }
 }

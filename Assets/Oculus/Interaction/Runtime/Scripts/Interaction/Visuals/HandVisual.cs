@@ -111,7 +111,7 @@ namespace Oculus.Interaction
             else if(IsVisible && ForceOffVisibility)
             {
                 _skinnedMeshRenderer.enabled = false;
-            }
+            } 
 
             if (_updateRootPose)
             {

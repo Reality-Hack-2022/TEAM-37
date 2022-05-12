@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayAtStart: 0
   AudioSourceToPlay: {fileID: 2849748798925215005}
-  MidiFilePath: Midi/stayin_alive_v2.mid
+  MidiFilePath: Midi/stayin_alive_v3.mid
   CurSecs: 0
   CurBeat: 0
   PlaySong: 0

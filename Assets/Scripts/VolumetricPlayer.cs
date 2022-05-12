@@ -37,6 +37,11 @@ public class VolumetricPlayer : MonoBehaviour
    public bool OverrideEndFrame = false;
    public int LoopEndFrameIdx = 0;
 
+   [Space(10)]
+
+   public bool ShowFixedFrameWhenStopped = false;
+   public int FixedFrameWhenStopped = 310;
+
    public enum SequenceType
    {
       MeshSequence,
@@ -343,6 +348,17 @@ public class VolumetricPlayer : MonoBehaviour
             _ShowFrame(CurFrame);
          }
 
+         return;
+      }
+
+      //freeze on first frame of current step when not in playback state
+      if((GetPlaybackState() != PlaybackState.Playing) && (SeqType != SequenceType.SyncWithOtherSequencer))
+      {
+         int stepToShow = (CurStep >= 0) ? CurStep : 0;
+         int frame = StepProgressIsFrames ? (int)Steps[stepToShow].StartProgress : (int)(Steps[stepToShow].StartProgress * MeshSequence.Length);
+         if (ShowFixedFrameWhenStopped)
+            frame = FixedFrameWhenStopped;
+         _ShowFrame(frame);
          return;
       }
 
