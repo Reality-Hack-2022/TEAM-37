@@ -87,6 +87,10 @@ public class ProgressionMgr : MonoBehaviour
         volumetricPlayer.CurStep = startStep;
         volumetricPlayer.gameObject.SetActive(true);
 
+        //if performing remove the ceiling of their room!
+        if(PassthruMgr.I)
+           PassthruMgr.I.ShowCeiling(isStepByStep);
+
         
         extraVolumetricPlayers.SetActive(true);
         mainMenuPanel.SetActive(false);

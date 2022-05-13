@@ -1700,6 +1700,8 @@ MonoBehaviour:
   LoopStartFrameIdx: 45
   OverrideEndFrame: 1
   LoopEndFrameIdx: 470
+  ShowFixedFrameWhenStopped: 0
+  FixedFrameWhenStopped: 310
   DriveSongPlaybackState: 1
   CurStep: 4
   StepProgressIsFrames: 1
@@ -1732,10 +1734,6 @@ MonoBehaviour:
     EndProgress: 470
     NumLoopBeats: 8
     WaitBeatsToRepeat: 4
-  - StartProgress: 45
-    EndProgress: 470
-    NumLoopBeats: 52
-    WaitBeatsToRepeat: 0
   CurFrame: 290
   CurProgress: 0.62098503
   ComputedStep: 1

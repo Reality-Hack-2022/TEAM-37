@@ -10,6 +10,14 @@ public class VRInputMgr : MonoBehaviour
       Right
    }
 
+   public static Transform GetHeadTrans()
+   {
+      if (CamMgr.I && (CamMgr.I.CamType == CamMgr.CamMode.Oculus) && CamMgr.I.OculusRig)
+         return CamMgr.I.OculusRig.GetComponent<OVRCameraRig>().centerEyeAnchor;
+
+      return null;
+   }
+
    public static Vector3 GetHeadPos()
    {
       if(CamMgr.I && (CamMgr.I.CamType == CamMgr.CamMode.Oculus) && CamMgr.I.OculusRig)
