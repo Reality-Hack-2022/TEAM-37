@@ -2009,8 +2009,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4263952650312799055, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4568117608709586972, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
+      propertyPath: wallMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 4e80e676a09ea164a9ca673dea87cbd9, type: 2}
+    - target: {fileID: 4568117608709586972, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
+      propertyPath: floorMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 4e80e676a09ea164a9ca673dea87cbd9, type: 2}
+    - target: {fileID: 4568117608709586972, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
+      propertyPath: ceilingMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 4e80e676a09ea164a9ca673dea87cbd9, type: 2}
     - target: {fileID: 5357045208740473642, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2070,6 +2082,10 @@ PrefabInstance:
     - target: {fileID: 6841324390952011828, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8224217944859517538, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ac07f90f7dd0c94c9307bebf4a9bec6, type: 3}

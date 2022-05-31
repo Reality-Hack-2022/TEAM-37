@@ -5,12 +5,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Pixelplacement.XRTools;
 
 public class PassthruMgr : MonoBehaviour
 {
    [Header("Config")]
    public bool StartInPassthru = true;
+   public bool StartWithRoomMapper = false;
    public RoomMapper RoomMapperMgr;
    public bool EnableToggleCheat = true;
    public KeyCode ToggleCheat = KeyCode.P;
@@ -20,6 +22,9 @@ public class PassthruMgr : MonoBehaviour
    [Header("Testing")]
    [InspectorButton("_DebugTogglePassthru", ButtonWidth = 150)]
    public bool TogglePassthru;
+
+   //events
+   public UnityEvent OnRoomMapped = new UnityEvent();
 
 
    private bool _passthruOn = false;
@@ -42,12 +47,23 @@ public class PassthruMgr : MonoBehaviour
       if (CamMgr.I && CamMgr.I.OculusRig)
          CamMgr.I.OculusRig.gameObject.GetComponent<OVRManager>().isInsightPassthroughEnabled = b;
 
-      //enable room mapper
-      if (RoomMapperMgr)
-         RoomMapperMgr.gameObject.SetActive(b);
-
       if (!_passthruOn)
          _roomMapped = false;
+   }
+
+   public void ActivateRoomMapper()
+   {
+      if (RoomMapperMgr)
+         RoomMapperMgr.gameObject.SetActive(true);
+   }
+
+   public void DeactivateRoomMapper()
+   {
+      //enable room mapper
+      if (RoomMapperMgr)
+         RoomMapperMgr.gameObject.SetActive(false);
+
+      _roomMapped = false;
    }
 
    public bool GetHasMappedRoom() { return _roomMapped; }
@@ -91,6 +107,9 @@ public class PassthruMgr : MonoBehaviour
          _passthru.projectionSurfaceType = OVRPassthroughLayer.ProjectionSurfaceType.Reconstructed;
 
       SetPassthruOn(StartInPassthru, true /*force*/);
+
+      if (StartInPassthru && StartWithRoomMapper)
+         ActivateRoomMapper();
    }
 
    void _OnRoomMapped()
@@ -102,17 +121,29 @@ public class PassthruMgr : MonoBehaviour
       _passthru.enabled = true;
 
       //start with all passthru surfaces on
-      _ShowPassthruSurface(RoomMapper.Instance.Floor, true);
-      _ShowPassthruSurface(RoomMapper.Instance.Ceiling, true);
-      foreach(var wall in RoomMapper.Instance.Walls)
-         _ShowPassthruSurface(wall, true);
+      ShowCeiling(true);
+      ShowFloor(true);
+      ShowWalls(true);
 
       _roomMapped = true;
+
+      OnRoomMapped.Invoke();
    }
 
    public void ShowCeiling(bool b)
    {
       _ShowPassthruSurface(RoomMapper.Instance.Ceiling, b);
+   }
+
+   public void ShowFloor(bool b)
+   {
+      _ShowPassthruSurface(RoomMapper.Instance.Floor, b);
+   }
+
+   public void ShowWalls(bool b)
+   {
+      foreach (var wall in RoomMapper.Instance.Walls)
+         _ShowPassthruSurface(wall, b);
    }
 
    void _ShowPassthruSurface(GameObject s, bool b)

@@ -28,6 +28,10 @@ public class ProgressionMgr : MonoBehaviour
     public VolumetricPlayer volumetricPlayer;
     public GameObject extraVolumetricPlayers;
 
+   [Header("Room Mapper")]
+   public bool ActivateRoomMapperForPlay = false;
+   public GameObject PlayModePassThruVisuals;
+
 
     [Header("UI Objects")]
     public StartSongUI startSongUI;
@@ -60,6 +64,9 @@ public class ProgressionMgr : MonoBehaviour
 
     private void Start()
     {
+      if (PlayModePassThruVisuals)
+         PlayModePassThruVisuals.SetActive(false);
+
         mainMenuPanel.SetActive(true);
         tutorialPanel.SetActive(false);
         if(startSongUI) 
@@ -87,11 +94,7 @@ public class ProgressionMgr : MonoBehaviour
         volumetricPlayer.CurStep = startStep;
         volumetricPlayer.gameObject.SetActive(true);
 
-        //if performing remove the ceiling of their room!
-        if(PassthruMgr.I)
-           PassthruMgr.I.ShowCeiling(isStepByStep);
-
-        
+       
         extraVolumetricPlayers.SetActive(true);
         mainMenuPanel.SetActive(false);
         tutorialPanel.SetActive(true);
@@ -115,8 +118,35 @@ public class ProgressionMgr : MonoBehaviour
            SetPlaying();
         }
 
+        //activate room mapping whne going into play mode, if configured
+        if(!isStepByStep && ActivateRoomMapperForPlay && PassthruMgr.I)
+        { 
+          if(!PassthruMgr.I.GetHasMappedRoom())
+             PassthruMgr.I.ActivateRoomMapper();
+          else
+            _ShowPlayModePassThru(true);
+        }
+        else
+         _ShowPlayModePassThru(false);
         //Tutorials[whichTutorial].PlayTutorial();
     }
+
+    void _OnRoomMapped()
+    {
+      _ShowPlayModePassThru(true);
+    }
+
+   void _ShowPlayModePassThru(bool b)
+   {
+      if (!ActivateRoomMapperForPlay || !PassthruMgr.I)
+         return;
+
+      //hide ceiling in play mode, so we can show trippy stuff!
+      PassthruMgr.I.ShowCeiling(!b);
+
+      if (PlayModePassThruVisuals)
+         PlayModePassThruVisuals.SetActive(b);
+   }
 
     void _OnStartSongUIComplete()
     {
